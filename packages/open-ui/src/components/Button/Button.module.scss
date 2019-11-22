@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/fonts.scss';
+@import 'styles/variables.scss';
 
 .button {
   background: $black;
@@ -7,11 +8,11 @@
   border: 3px solid transparent;
   color: white;
   cursor: pointer;
-  font-size: 13px;
+  font-size: $font-size-sm;
   font-weight: 600;
   line-height: 1;
   outline: 3px solid transparent;
-  padding: 10px 20px;
+  padding: $vertical-rhythm (2 * $vertical-rhythm);
   text-transform: uppercase;
   transition: all 0.2s;
 
@@ -25,6 +26,11 @@
     border-color: white;
     outline-color: $black;
   }
+}
+
+.large {
+  font-size: $font-size-base;
+  padding: (2 * $vertical-rhythm) (3 * $vertical-rhythm);
 }
 
 .primary {

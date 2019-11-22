@@ -2,24 +2,26 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { MarginStyles } from 'interfaces/MarginStyles';
+import { StyleTypeOption } from 'interfaces/StyleTypeOption';
+import { SizeOption } from 'interfaces/SizeOption';
 import { verticalRhythm } from 'constants/styles';
 import styles from './Button.module.scss';
 
-type colors = 'primary' | 'secondary';
-
 interface ButtonProps {
-  color?: colors;
+  type?: StyleTypeOption;
+  size?: SizeOption;
   text: string;
   onClick: () => void;
 }
 
 export const Button: React.FC<ButtonProps & MarginStyles> = props => {
-  const { color, text, onClick, ...styleProps } = props;
+  const { type, text, size, onClick, ...styleProps } = props;
 
   // Build the class names
   const cls = classNames(styles.button, {
-    [styles.primary]: color === 'primary',
-    [styles.secondary]: color === 'secondary',
+    [styles.primary]: type === 'primary',
+    [styles.secondary]: type === 'secondary',
+    [styles.large]: size === 'large',
   });
 
   // Build up the margin styles using our vertical rhythm

@@ -1,1 +1,9 @@
-$vertical-rhythm: 8;
+// This sets the "rhythm" of the styles.
+// Every padding and margin etc should be a multiple of this.
+$vertical-rhythm: 8px;
+
+// Font sizes
+$font-size-base: 16px;
+$font-size-sm: $font-size-base * 0.75;
+$font-size-lg: $font-size-base * 1.5;
+$font-size-xl: $font-size-base * 2;
