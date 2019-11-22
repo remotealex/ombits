@@ -18,7 +18,7 @@ export const sizes = () => {
   return <Button {...common} type="secondary" size={size as SizeOption} />;
 };
 
-export const withMarginRight = () => (
+export const withMargin = () => (
   <Outline>
     <Button {...common} marginRight={2} marginBottom={4} />
   </Outline>

@@ -27,7 +27,7 @@ export const Button: React.FC<ButtonProps & MarginStyles> = props => {
   // Build up the margin styles using our vertical rhythm
   const _styleProps = {} as any;
   Object.entries(styleProps).map(([key, value]: [string, number]) => {
-    _styleProps[key] = value * verticalRhythm + 'px';
+    return (_styleProps[key] = value * verticalRhythm + 'px');
   });
 
   return (
@@ -39,6 +39,7 @@ export const Button: React.FC<ButtonProps & MarginStyles> = props => {
         e.stopPropagation();
         e.currentTarget.blur();
         onClick();
+        return null;
       }}
     >
       {text}
