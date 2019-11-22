@@ -1,0 +1,54 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.button {
+  background: $black;
+  border-radius: 3px;
+  border: 3px solid transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  outline: 3px solid transparent;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+
+  &:hover {
+    background: white;
+    border-color: $black;
+    color: $black;
+  }
+
+  &:focus {
+    border-color: white;
+    outline-color: $black;
+  }
+}
+
+.primary {
+  background: $primary;
+
+  &:hover {
+    border-color: $primary;
+    color: $primary;
+  }
+
+  &:focus {
+    outline-color: $primary;
+  }
+}
+
+.secondary {
+  background: $secondary;
+
+  &:hover {
+    border-color: $secondary;
+    color: $secondary;
+  }
+
+  &:focus {
+    outline-color: $secondary;
+  }
+}

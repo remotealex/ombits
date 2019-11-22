@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { Button } from "./components/Button";
+import { Button } from './components/Button';
+import './styles/global.scss';
 
 const App: React.FC = () => {
   return (
