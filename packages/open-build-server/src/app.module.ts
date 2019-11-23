@@ -5,7 +5,6 @@ import { join } from 'path';
 
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
-// import { UsersResolver } from './users/resolvers/users.resolver';
 
 @Module({
   imports: [
@@ -28,6 +27,5 @@ import { UsersModule } from './users/users.module';
     }),
     UsersModule,
   ],
-  // providers: [UserResolver],
 })
 export class AppModule {}
