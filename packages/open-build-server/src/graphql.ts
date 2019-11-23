@@ -6,12 +6,7 @@
 
 /* tslint:disable */
 export abstract class IMutation {
-    abstract updateFirstName(id: number, firstName: string): User | Promise<User>;
-}
-
-export class Project {
-    id: number;
-    name?: string;
+    abstract create(firstName: string, lastName: string): User | Promise<User>;
 }
 
 export abstract class IQuery {
@@ -22,5 +17,4 @@ export class User {
     id: number;
     firstName?: string;
     lastName?: string;
-    projects?: Project[];
 }

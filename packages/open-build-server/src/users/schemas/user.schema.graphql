@@ -1,0 +1,23 @@
+type User {
+  id: Int!
+  firstName: String
+  lastName: String
+  # projects: [Project]
+}
+
+# type Project {
+#   id: Int!
+#   name: String
+# }
+
+type Query {
+  user(id: Int!): User
+}
+
+type Mutation {
+  create(firstName: String!, lastName: String!): User
+}
+
+# type Mutation {
+#   updateFirstName(id: Int!, firstName: String!): User
+# }
