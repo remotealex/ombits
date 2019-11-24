@@ -1,0 +1,8 @@
+@import 'styles/index.scss';
+
+.card {
+  background: $white;
+  border-radius: $vertical-rhythm;
+  box-shadow: $base-shadow;
+  padding: 2 * $vertical-rhythm;
+}

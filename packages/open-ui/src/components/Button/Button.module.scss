@@ -4,7 +4,7 @@
   background: $black;
   border-radius: 3px;
   border: 3px solid transparent;
-  color: white;
+  color: $white;
   cursor: pointer;
   font-size: $font-size-sm;
   font-weight: 500;
@@ -16,13 +16,13 @@
   transition: all 0.2s;
 
   &:hover {
-    background: white;
+    background: $white;
     border-color: $black;
     color: $black;
   }
 
   &:focus {
-    border-color: white;
+    border-color: $white;
     outline-color: $black;
   }
 }

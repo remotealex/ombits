@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Wrapper } from '.';
-import { Outline } from 'components/Outline';
 
 export const wrapper = () => (
   <Wrapper>
