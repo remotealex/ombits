@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { MarginStyles } from 'interfaces/MarginStyles';
-import { verticalRhythm } from 'constants/styles';
+import { MarginStyleKeys } from 'interfaces/MarginStyleKeys';
+import { getMarginProps } from 'utils/helpers';
 import styles from './Grid.module.scss';
 
 export type ColOption = 2 | 3 | 4 | 5 | 6;
@@ -13,8 +13,9 @@ interface GridProps {
   overflowFill?: boolean;
 }
 
-export const Grid: React.FC<GridProps & MarginStyles> = props => {
+export const Grid: React.FC<GridProps & MarginStyleKeys> = props => {
   const { children, cols, gutters, overflowFill, ...styleProps } = props;
+  const marginProps = getMarginProps(props);
 
   // Build the class names
   const cls = classNames(styles.grid, {
@@ -28,16 +29,10 @@ export const Grid: React.FC<GridProps & MarginStyles> = props => {
     [styles.overflowFill]: overflowFill,
   });
 
-  // Build up the margin styles using our vertical rhythm
-  const _styleProps = {} as any;
-  Object.entries(styleProps).map(([key, value]: [string, number]) => {
-    return (_styleProps[key] = value * verticalRhythm + 'px');
-  });
-
   const _children = React.Children.toArray(children);
 
   return (
-    <div className={cls} style={_styleProps}>
+    <div className={cls} style={marginProps}>
       {_children.map((child: ReactNode, idx: number) => (
         <div key={idx}>{child}</div>
       ))}

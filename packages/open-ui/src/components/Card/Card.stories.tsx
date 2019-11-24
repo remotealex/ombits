@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Card } from './Card';
-import { Text, Title } from 'components/Typography';
+import { Text } from 'components/Typography';
 import { Wrapper } from 'components/Wrapper';
 import styles from 'styles/global.module.scss';
 

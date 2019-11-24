@@ -1,5 +1,5 @@
 import React from 'react';
-import { optionsKnob, withKnobs, number } from '@storybook/addon-knobs';
+import { withKnobs, number } from '@storybook/addon-knobs';
 
 import { Grid, ColOption } from './Grid';
 import { Wrapper } from 'components/Wrapper';

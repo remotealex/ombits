@@ -1,20 +1,15 @@
 import React from 'react';
 
-import { MarginStyles } from 'interfaces/MarginStyles';
-import { verticalRhythm } from 'constants/styles';
+import { MarginStyleKeys } from 'interfaces/MarginStyleKeys';
+import { getMarginProps } from 'utils/helpers';
 import styles from './Wrapper.module.scss';
 
-export const Wrapper: React.FC<MarginStyles> = props => {
-  const { children, ...styleProps } = props;
-
-  // Build up the margin styles using our vertical rhythm
-  const _styleProps = {} as any;
-  Object.entries(styleProps).map(([key, value]: [string, number]) => {
-    return (_styleProps[key] = value * verticalRhythm + 'px');
-  });
+export const Wrapper: React.FC<MarginStyleKeys> = props => {
+  const { children } = props;
+  const marginProps = getMarginProps(props);
 
   return (
-    <div className={styles.wrapper} style={_styleProps}>
+    <div className={styles.wrapper} style={marginProps}>
       {children}
     </div>
   );
