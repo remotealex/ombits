@@ -1,29 +1,24 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { MarginStyles } from 'interfaces/MarginStyles';
+import { MarginStyleKeys } from 'interfaces/MarginStyleKeys';
 import { Title } from 'components/Typography';
-import { verticalRhythm } from 'constants/styles';
+import { getMarginProps } from 'utils/helpers';
 import styles from './Card.module.scss';
 
 interface CardProps {
   title?: string;
 }
 
-export const Card: React.FC<CardProps & MarginStyles> = props => {
-  const { children, title, ...styleProps } = props;
+export const Card: React.FC<CardProps & MarginStyleKeys> = props => {
+  const { children, title } = props;
+  const marginProps = getMarginProps(props);
 
   // Build the class names
   const cls = classNames(styles.card);
 
-  // Build up the margin styles using our vertical rhythm
-  const _styleProps = {} as any;
-  Object.entries(styleProps).map(([key, value]: [string, number]) => {
-    return (_styleProps[key] = value * verticalRhythm + 'px');
-  });
-
   return (
-    <div className={cls} style={_styleProps}>
+    <div className={cls} style={marginProps}>
       {title && <Title as="h4" text={title} marginBottom={1} />}
       {children}
     </div>

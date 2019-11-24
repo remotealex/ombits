@@ -1,0 +1,135 @@
+@import 'styles/index.scss';
+
+.grid {
+  display: flex;
+
+  * {
+    flex: 0 1 100%;
+  }
+}
+
+.cols {
+  flex-wrap: wrap;
+}
+
+.cols2base > * {
+  flex: 0 1 50%;
+}
+
+.cols3base > * {
+  flex: 0 1 33.3334%;
+}
+
+.cols4base > * {
+  flex: 0 1 25%;
+}
+
+.cols5base > * {
+  flex: 0 1 20%;
+}
+
+.cols6base > * {
+  flex: 0 1 16.6667%;
+}
+
+@media #{$small-up} {
+  .cols2sm > * {
+    flex: 0 1 50%;
+  }
+
+  .cols3sm > * {
+    flex: 0 1 33.3334%;
+  }
+
+  .cols4sm > * {
+    flex: 0 1 25%;
+  }
+
+  .cols5sm > * {
+    flex: 0 1 20%;
+  }
+
+  .cols6sm > * {
+    flex: 0 1 16.6667%;
+  }
+}
+
+@media #{$medium-up} {
+  .cols2md > * {
+    flex: 0 1 50%;
+  }
+
+  .cols3md > * {
+    flex: 0 1 33.3334%;
+  }
+
+  .cols4md > * {
+    flex: 0 1 25%;
+  }
+
+  .cols5md > * {
+    flex: 0 1 20%;
+  }
+
+  .cols6md > * {
+    flex: 0 1 16.6667%;
+  }
+}
+
+@media #{$large-up} {
+  .cols2lg > * {
+    flex: 0 1 50%;
+  }
+
+  .cols3lg > * {
+    flex: 0 1 33.3334%;
+  }
+
+  .cols4lg > * {
+    flex: 0 1 25%;
+  }
+
+  .cols5lg > * {
+    flex: 0 1 20%;
+  }
+
+  .cols6lg > * {
+    flex: 0 1 16.6667%;
+  }
+}
+
+@media #{$xlarge-up} {
+  .cols2xl > * {
+    flex: 0 1 50%;
+  }
+
+  .cols3xl > * {
+    flex: 0 1 33.3334%;
+  }
+
+  .cols4xl > * {
+    flex: 0 1 25%;
+  }
+
+  .cols5xl > * {
+    flex: 0 1 20%;
+  }
+
+  .cols6xl > * {
+    flex: 0 1 16.6667%;
+  }
+}
+
+.gutters {
+  margin: -$vertical-rhythm;
+
+  * {
+    padding: $vertical-rhythm;
+  }
+}
+
+.overflowFill {
+  * {
+    flex-grow: 1;
+  }
+}
