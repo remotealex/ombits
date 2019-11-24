@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { MarginStyles } from 'interfaces/MarginStyles';
+import { MarginStyleKeys } from 'interfaces/MarginStyleKeys';
 import { StyleTypeOption } from 'interfaces/StyleTypeOption';
 import { SizeOption } from 'interfaces/SizeOption';
-import { verticalRhythm } from 'constants/styles';
+import { getMarginProps } from 'utils/helpers';
 import styles from './Button.module.scss';
 
 interface ButtonProps {
@@ -14,8 +14,9 @@ interface ButtonProps {
   onClick: () => void;
 }
 
-export const Button: React.FC<ButtonProps & MarginStyles> = props => {
-  const { type, text, size, onClick, ...styleProps } = props;
+export const Button: React.FC<ButtonProps & MarginStyleKeys> = props => {
+  const { type, text, size, onClick } = props;
+  const marginProps = getMarginProps(props);
 
   // Build the class names
   const cls = classNames(styles.button, {
@@ -24,16 +25,10 @@ export const Button: React.FC<ButtonProps & MarginStyles> = props => {
     [styles.large]: size === 'large',
   });
 
-  // Build up the margin styles using our vertical rhythm
-  const _styleProps = {} as any;
-  Object.entries(styleProps).map(([key, value]: [string, number]) => {
-    return (_styleProps[key] = value * verticalRhythm + 'px');
-  });
-
   return (
     <button
       className={cls}
-      style={_styleProps}
+      style={marginProps}
       onClick={e => {
         e.preventDefault();
         e.stopPropagation();

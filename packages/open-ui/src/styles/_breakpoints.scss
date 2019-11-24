@@ -1,0 +1,11 @@
+// BREAKPOINT VARIABLES
+$break-small: 480px;
+$break-medium: 768px;
+$break-large: 1024px;
+$break-xlarge: 1400px;
+
+// MEDIA QUERY HELPERS
+$small-up: 'only screen and (min-width : #{$break-small})';
+$medium-up: 'only screen and (min-width : #{$break-medium})';
+$large-up: 'only screen and (min-width : #{$break-large})';
+$xlarge-up: 'only screen and (min-width : #{$break-xlarge})';
