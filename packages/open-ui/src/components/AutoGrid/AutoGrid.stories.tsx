@@ -1,7 +1,7 @@
 import React from 'react';
 import { withKnobs, number } from '@storybook/addon-knobs';
 
-import { Grid, ColOption } from './Grid';
+import { AutoGrid, ColOption } from './AutoGrid';
 import { Wrapper } from 'components/Wrapper';
 import { Outline } from 'components/Outline';
 
@@ -25,13 +25,7 @@ const tempCards = [
   />,
 ];
 
-export const base = () => (
-  <Wrapper>
-    <Grid>{tempCards}</Grid>
-  </Wrapper>
-);
-
-export const columns = () => {
+export const base = () => {
   const cols = number('Number of cols (2-6)', 2);
 
   if (!cols) {
@@ -40,7 +34,17 @@ export const columns = () => {
 
   return (
     <Wrapper>
-      <Grid cols={cols as ColOption}>{tempCards}</Grid>
+      <AutoGrid base={cols as ColOption}>{tempCards}</AutoGrid>
+    </Wrapper>
+  );
+};
+
+export const responsive = () => {
+  return (
+    <Wrapper>
+      <AutoGrid sm={2} md={3} lg={4} xl={5}>
+        {tempCards}
+      </AutoGrid>
     </Wrapper>
   );
 };
@@ -48,19 +52,19 @@ export const columns = () => {
 export const withGutters = () => (
   <Wrapper>
     <Outline block>
-      <Grid gutters cols={4}>
+      <AutoGrid gutters base={3}>
         {tempCards}
-      </Grid>
+      </AutoGrid>
     </Outline>
   </Wrapper>
 );
 
 export const overflowFill = () => (
   <Wrapper>
-    <Grid overflowFill cols={4}>
+    <AutoGrid overflowFill base={4}>
       {tempCards}
-    </Grid>
+    </AutoGrid>
   </Wrapper>
 );
 
-export default { title: 'Grid', decorators: [withKnobs] };
+export default { title: 'AutoGrid', decorators: [withKnobs] };
