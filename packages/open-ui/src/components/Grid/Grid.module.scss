@@ -1,5 +1,15 @@
 @import 'styles/index.scss';
 
+// Build the classes we need for each column
+@mixin grid-cols($size) {
+  @for $i from 1 through $columns {
+    .col#{$size}#{$i} {
+      display: block;
+      flex-basis: (100% / $columns) * $i;
+    }
+  }
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -15,16 +25,6 @@
 
 .col {
   flex: 0 0 100%;
-}
-
-// Build the classes we need for each column
-@mixin grid-cols($size) {
-  @for $i from 1 through $columns {
-    .col#{$size}#{$i} {
-      display: block;
-      flex-basis: (100% / $columns) * $i;
-    }
-  }
 }
 
 .colBase0 {

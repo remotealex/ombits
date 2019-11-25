@@ -1,0 +1,15 @@
+@import 'styles/index.scss';
+
+.Tag {
+  font-size: $font-size-sm;
+  border-radius: 3px;
+  color: $black;
+  padding: $vr/2;
+  background-color: $grey;
+  text-transform: capitalize;
+
+  &-large {
+    padding: $vr;
+    font-size: $font-size-base;
+  }
+}
