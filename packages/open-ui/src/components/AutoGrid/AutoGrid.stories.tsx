@@ -1,9 +1,10 @@
 import React from 'react';
 import { withKnobs, number } from '@storybook/addon-knobs';
 
-import { AutoGrid, ColOption } from './AutoGrid';
+import { AutoGrid } from './AutoGrid';
 import { Wrapper } from 'components/Wrapper';
 import { Outline } from 'components/Outline';
+import { ColOption } from 'interfaces/ColumnOptions';
 
 const tempCards = [
   <div
@@ -26,7 +27,7 @@ const tempCards = [
 ];
 
 export const base = () => {
-  const cols = number('Number of cols (2-6)', 2);
+  const cols = number('Number of cols (0-12)', 2);
 
   if (!cols) {
     return null;

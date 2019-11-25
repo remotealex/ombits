@@ -1,0 +1,61 @@
+@import 'styles/index.scss';
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gutters {
+  margin: -$vertical-rhythm;
+
+  .col {
+    padding: $vertical-rhythm;
+  }
+}
+
+.col {
+  flex: 0 0 100%;
+}
+
+// Build the classes we need for each column
+@mixin grid-cols($size) {
+  @for $i from 1 through $columns {
+    .col#{$size}#{$i} {
+      display: block;
+      flex-basis: (100% / $columns) * $i;
+    }
+  }
+}
+
+.colBase0 {
+  display: none;
+}
+@include grid-cols('Base');
+
+@media #{$small-up} {
+  .colSmall0 {
+    display: none;
+  }
+  @include grid-cols('Small');
+}
+
+@media #{$medium-up} {
+  .colMedium0 {
+    display: none;
+  }
+  @include grid-cols('Medium');
+}
+
+@media #{$large-up} {
+  .colLarge0 {
+    display: none;
+  }
+  @include grid-cols('Large');
+}
+
+@media #{$xlarge-up} {
+  .colXlarge0 {
+    display: none;
+  }
+  @include grid-cols('Xlarge');
+}
