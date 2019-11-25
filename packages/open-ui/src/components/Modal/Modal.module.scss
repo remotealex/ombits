@@ -1,0 +1,36 @@
+@import '../../styles/index.scss';
+
+.overlay {
+  background: $black;
+  bottom: 0;
+  left: 0;
+  opacity: 0.4;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.modalWrapper {
+  left: 50%;
+  max-width: 600px;
+  padding: 2 * $vr;
+  position: fixed;
+  top: calc(50% - 12px);
+  transform: translate(-50%, -50%);
+  transition: top 0.4s ease;
+  width: 100%;
+
+  &.active {
+    top: 50%;
+  }
+}
+
+.modal {
+  background: $white;
+  border-radius: $vr;
+  box-shadow: $base-shadow;
+}
+
+.content {
+  padding: 3 * $vr;
+}
