@@ -2,7 +2,7 @@
 
 .navigation {
   border-bottom: 1px solid $grey;
-  padding: (2 * $vertical-rhythm) 0;
+  padding: (2 * $vr) 0;
   width: 100%;
 }
 
@@ -12,7 +12,7 @@
   justify-content: space-between;
   margin: 0 auto;
   max-width: $max-width;
-  padding: 0 $vertical-rhythm;
+  padding: 0 $vr;
 }
 
 .navigationList {

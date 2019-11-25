@@ -11,7 +11,7 @@
   letter-spacing: 1.2px;
   line-height: 1;
   outline: 3px solid transparent;
-  padding: $vertical-rhythm (2 * $vertical-rhythm);
+  padding: $vr (2 * $vr);
   text-transform: uppercase;
   transition: all 0.2s;
 
@@ -29,7 +29,7 @@
 
 .large {
   font-size: $font-size-base;
-  padding: (2 * $vertical-rhythm) (3 * $vertical-rhythm);
+  padding: (2 * $vr) (3 * $vr);
 }
 
 .primary {
