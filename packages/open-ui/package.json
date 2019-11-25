@@ -2,8 +2,13 @@
   "name": "open-ui",
   "version": "0.0.0",
   "main": "dist/main.js",
+  "module": "dist/main.es.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/main.d.ts",
   "scripts": {
-    "export": "tsc src/main.tsx --jsx react -esModuleInterop --outDir dist -d",
+    "export": "rimraf dist && rollup -c",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -48,6 +53,9 @@
     "@types/webpack": "^4.41.0",
     "babel-loader": "^8.0.6",
     "react-docgen-typescript-loader": "^3.5.0",
+    "rollup": "^1.27.5",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-typescript2": "^0.25.2",
     "ts-loader": "^6.2.1"
   }
 }

@@ -1,8 +1,8 @@
-import React from "react";
-import { gql } from "apollo-boost";
+import React from 'react';
+import { gql } from 'apollo-boost';
 // import { Query } from "react-apollo";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import { Button } from "open-ui";
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { AutoGrid, Button } from 'open-ui';
 
 const GET_USERS = gql`
   query {
@@ -45,7 +45,34 @@ const App = () => {
           />
         </div>
       ))}
-      <Button />
+      <Button text="Test" />
+      <br />
+      <AutoGrid>
+        <div
+          style={{
+            background: 'blue',
+            height: '20px',
+            border: '1px solid green',
+            width: '100%',
+          }}
+        />
+        <div
+          style={{
+            background: 'blue',
+            height: '20px',
+            border: '1px solid green',
+            width: '100%',
+          }}
+        />
+        <div
+          style={{
+            background: 'blue',
+            height: '20px',
+            border: '1px solid green',
+            width: '100%',
+          }}
+        />
+      </AutoGrid>
     </div>
   );
 };
