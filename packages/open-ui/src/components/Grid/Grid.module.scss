@@ -1,4 +1,4 @@
-@import 'styles/index.scss';
+@import '../../styles/index.scss';
 
 // Build the classes we need for each column
 @mixin grid-cols($size) {
@@ -16,10 +16,10 @@
 }
 
 .gutters {
-  margin: -$vertical-rhythm;
+  margin: -$vr;
 
   .col {
-    padding: $vertical-rhythm;
+    padding: $vr;
   }
 }
 

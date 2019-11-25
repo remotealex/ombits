@@ -1,4 +1,4 @@
-@import 'styles/index.scss';
+@import '../../styles/index.scss';
 
 .autoGrid {
   display: flex;
@@ -40,10 +40,10 @@
 }
 
 .gutters {
-  margin: -$vertical-rhythm;
+  margin: -$vr;
 
   * {
-    padding: $vertical-rhythm;
+    padding: $vr;
   }
 }
 
