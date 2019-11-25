@@ -1,0 +1,26 @@
+@import '../../styles/index.scss';
+
+.image {
+  display: inline-block;
+  object-fit: cover;
+}
+
+.borderRadiusSmall {
+  border-radius: $vr / 2;
+}
+
+.borderRadiusMedium {
+  border-radius: $vr;
+}
+
+.borderRadiusLarge {
+  border-radius: 2 * $vr;
+}
+
+.borderRadiusLarge {
+  border-radius: 2 * $vr;
+}
+
+.circle {
+  border-radius: 50%;
+}
