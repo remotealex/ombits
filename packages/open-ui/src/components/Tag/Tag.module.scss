@@ -2,15 +2,19 @@
 
 .tag {
   background-color: $grey;
-  border-radius: 12px;
+  border-radius: 50%;
   color: $black;
   display: inline-block;
   font-size: $font-size-sm;
-  padding: $vr;
+  font-weight: 500;
+  padding: $vr ($vr * 2);
   text-transform: uppercase;
+
+  &:hover {
+    background-color: darken($grey, 5%);
+  }
 }
 .large {
   padding: $vr * 1.5;
-  border-radius: 20px;
   font-size: $font-size-base;
 }
