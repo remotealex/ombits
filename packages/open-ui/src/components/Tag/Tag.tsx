@@ -12,14 +12,13 @@ interface TagProps {
 }
 
 export const Tag: React.FC<TagProps & MarginStyleKeys> = props => {
-  const { text, size } = props;
-  const _props = { marginBottom: 0.5, marginRight: 0.5, ...props };
-  const marginStyles = getMarginProps(_props);
+  const { text, size, ...marginStyles } = props;
+  const _marginStyles = getMarginProps(marginStyles);
   const cls = classNames(styles.tag, {
     [styles.large]: size === 'large',
   });
   return (
-    <div style={{ ...marginStyles }} className={cls}>
+    <div style={{ ..._marginStyles }} className={cls}>
       {text}
     </div>
   );
