@@ -4,19 +4,11 @@ import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { Modal } from './Modal';
 import { Text } from 'components/Typography';
 
-const common = {};
+const common = { close: () => {} };
 
 export const base = () => (
-  <Fragment>
-    <div
-      style={{
-        backgroundImage:
-          'linear-gradient(45deg, #98CD8D 25%, #F6F0CF 25%, #F6F0CF 50%, #98CD8D 50%, #98CD8D 75%, #F6F0CF 75%, #F6F0CF 100%)',
-        backgroundSize: '56.57px 56.57px',
-        height: '200vh',
-        width: '100%',
-      }}
-    />
+  <div style={{ height: '200vh', width: '100%' }}>
+    <Text>You can see the scroll lock working here...</Text>
     <Modal {...common} active={boolean('Open', false)}>
       <Text>
         Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
@@ -30,7 +22,13 @@ export const base = () => (
         no ius labitur forensibus.
       </Text>
     </Modal>
-  </Fragment>
+  </div>
+);
+
+export const withCloseButton = () => (
+  <Modal {...common} active={true} showCloseButton>
+    Hello world
+  </Modal>
 );
 
 export default { title: 'Modal', decorators: [withKnobs] };

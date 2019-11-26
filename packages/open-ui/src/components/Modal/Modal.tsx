@@ -5,16 +5,18 @@ import classNames from 'classnames';
 import ScrollLock from 'react-scrolllock';
 
 import { Title } from 'components/Typography';
+import { CloseButton } from './CloseButton';
 import styles from './Modal.module.scss';
 
 interface ModalProps {
   active: boolean;
+  close: () => void;
+  showCloseButton?: boolean;
   title?: string;
 }
 
 export const Modal: React.FC<ModalProps> = props => {
-  const { active, children, title } = props;
-  const [isMounted, setMountedState] = useState(false);
+  const { active, showCloseButton, children, title, close } = props;
   const [isContentVisible, setContentVisibility] = useState(false);
   const { style, play } = useAnimate({
     duration: 0.2,
@@ -24,25 +26,26 @@ export const Modal: React.FC<ModalProps> = props => {
 
   useEffect(() => {
     play(active);
-    setMountedState(true);
-    setContentVisibility(active);
+    setTimeout(() => {
+      setContentVisibility(active);
+    }, 200);
   }, [active, play]);
 
   // Build the class names
-  const cls = classNames(styles.modalWrapper, {
+  const modalWrapperCls = classNames(styles.modalWrapper, {
+    [styles.active]: isContentVisible,
+  });
+  const overlayCls = classNames(styles.overlay, {
     [styles.active]: isContentVisible,
   });
 
-  if (!active && !isMounted) {
-    return null;
-  }
-
   return ReactDOM.createPortal(
     <div style={style}>
-      <div className={styles.overlay} />
+      <div className={overlayCls} onClick={() => close()} />
       <ScrollLock isActive={active}>
-        <div className={cls}>
+        <div className={modalWrapperCls}>
           <div className={styles.modal}>
+            {showCloseButton && <CloseButton close={close} />}
             {title && <Title as="h3" text="title" />}
             <div className={styles.content}>{children}</div>
           </div>

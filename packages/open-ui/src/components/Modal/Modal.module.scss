@@ -1,34 +1,48 @@
 @import '../../styles/index.scss';
 
+$z-index: 999;
+
 .overlay {
-  background: $black;
+  background: $white;
   bottom: 0;
+  cursor: alias;
   left: 0;
-  opacity: 0.4;
+  opacity: 0.3;
   position: fixed;
   right: 0;
   top: 0;
+  visibility: hidden;
+  z-index: $z-index;
+
+  &.active {
+    visibility: visible;
+  }
 }
 
 .modalWrapper {
   left: 50%;
   max-width: 600px;
   padding: 2 * $vr;
+  opacity: 0;
   position: fixed;
   top: calc(50% - 12px);
   transform: translate(-50%, -50%);
-  transition: top 0.4s ease;
+  transition: all 0.4s ease;
   width: 100%;
+  z-index: $z-index + 1;
 
   &.active {
+    opacity: 1;
     top: 50%;
   }
 }
 
 .modal {
-  background: $white;
+  background: $off-black;
   border-radius: $vr;
   box-shadow: $base-shadow;
+  position: relative; // for close button
+  z-index: $z-index;
 }
 
 .content {

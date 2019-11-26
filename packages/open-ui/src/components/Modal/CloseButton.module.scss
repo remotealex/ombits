@@ -1,0 +1,18 @@
+@import '../../styles/index.scss';
+
+.closeButton {
+  background: $primary-color;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  height: 3 * $vr;
+  position: absolute;
+  right: -$vr;
+  top: -$vr;
+  transition: all 0.2s;
+  width: 3 * $vr;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
