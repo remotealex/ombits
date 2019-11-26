@@ -7,7 +7,7 @@ export const standard = () => (
     logo={
       <div
         style={{
-          background: 'black',
+          background: '#7f5af0',
           height: '25px',
           transform: 'rotate(45deg)',
           width: '25px',

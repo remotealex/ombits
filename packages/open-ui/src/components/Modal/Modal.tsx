@@ -26,7 +26,7 @@ export const Modal: React.FC<ModalProps> = props => {
     play(active);
     setMountedState(true);
     setContentVisibility(active);
-  }, [active]);
+  }, [active, play]);
 
   // Build the class names
   const cls = classNames(styles.modalWrapper, {

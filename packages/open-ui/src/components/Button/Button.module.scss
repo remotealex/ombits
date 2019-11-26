@@ -1,59 +1,35 @@
 @import '../../styles/index.scss';
 
 .button {
-  background: $black;
+  background: $white;
   border-radius: 3px;
-  border: 3px solid transparent;
-  color: $white;
+  border: none;
+  color: $black;
   cursor: pointer;
   font-size: $font-size-sm;
-  font-weight: 500;
-  letter-spacing: 1.2px;
+  font-weight: 600;
+  letter-spacing: 1px;
   line-height: 1;
-  outline: 3px solid transparent;
-  padding: $vr (2 * $vr);
+  padding: (1.5 * $vr) (2.5 * $vr);
   text-transform: uppercase;
   transition: all 0.2s;
 
   &:hover {
-    background: $white;
-    border-color: $black;
-    color: $black;
+    transform: translateY(1px);
   }
-
-  &:focus {
-    border-color: $white;
-    outline-color: $black;
-  }
-}
-
-.large {
-  font-size: $font-size-base;
-  padding: (2 * $vr) (3 * $vr);
 }
 
 .primary {
-  background: $primary;
-
-  &:hover {
-    border-color: $primary;
-    color: $primary;
-  }
-
-  &:focus {
-    outline-color: $primary;
-  }
+  background: $primary-color;
+  color: $white;
 }
 
 .secondary {
-  background: $secondary;
+  background: $secondary-color;
+  color: $white;
+}
 
-  &:hover {
-    border-color: $secondary;
-    color: $secondary;
-  }
-
-  &:focus {
-    outline-color: $secondary;
-  }
+.large {
+  font-size: $font-size-sm;
+  padding: (2 * $vr) (4 * $vr);
 }
