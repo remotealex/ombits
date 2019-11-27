@@ -1,19 +1,26 @@
 // From here https://flatuicolors.com/palette/de
 
-// Primary colors
+// Primary colours
 $white: #ffffff;
-$black: #2c3e50;
-$blue: #3498db;
-$darkGrey: #4b6584;
-$green: #2ecc71;
-$grey: #d1d8e0;
+$black: #16161a;
+$off-black: #242629;
+$grey-dark: #72757e;
+$grey: #b5bbc3;
+$purple: #7f5af0;
+$green: #2cb67d;
 $orange: #e67e22;
-$purple: #9b59b6;
-$red: #e74c3c;
-$yellow: #f1c40f;
-$off-white: #fafafa;
+$red: #df5040;
+// $blue: #3498db;
+// $yellow: #f1c40f;
 
 // Brand aliases
-$primary: $blue;
-$secondary: $green;
-$bg: $off-white;
+$primary-color: $purple;
+$secondary-color: $white;
+$bg-color: $black;
+$success-color: $green;
+$error-color: $red;
+$warning-color: $orange;
+
+// Brand text colours
+$headline-color: $white;
+$paragraph-color: $grey;

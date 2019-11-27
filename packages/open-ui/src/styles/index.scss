@@ -8,3 +8,8 @@
 // Now our theme specific styles
 @import './_colors.scss';
 @import './_fonts.scss';
+
+html,
+body {
+  background: $bg-color;
+}

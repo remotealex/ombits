@@ -1,7 +1,8 @@
 @import '../../styles/index.scss';
 
 .navigation {
-  border-bottom: 1px solid $grey;
+  border-bottom: 2px solid $off-black;
+  background: $black;
   padding: (2 * $vr) 0;
   width: 100%;
 }

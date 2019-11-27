@@ -1,59 +1,51 @@
 @import '../../styles/index.scss';
 
 .button {
-  background: $black;
+  background: transparent;
   border-radius: 3px;
-  border: 3px solid transparent;
+  border: none;
   color: $white;
   cursor: pointer;
   font-size: $font-size-sm;
-  font-weight: 500;
-  letter-spacing: 1.2px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
   line-height: 1;
-  outline: 3px solid transparent;
-  padding: $vr (2 * $vr);
+  padding: (1.5 * $vr) (2.5 * $vr);
   text-transform: uppercase;
   transition: all 0.2s;
 
   &:hover {
-    background: $white;
-    border-color: $black;
-    color: $black;
+    transform: translateY(1px);
+    opacity: 0.8;
   }
+}
 
-  &:focus {
-    border-color: $white;
-    outline-color: $black;
-  }
+.intentPrimary {
+  background: $primary-color;
+  color: $white;
+}
+
+.intentSecondary {
+  background: $secondary-color;
+  color: $white;
+}
+
+.intentSuccess {
+  background: $success-color;
+  color: $white;
+}
+
+.intentError {
+  background: $error-color;
+  color: $white;
+}
+
+.intentWarning {
+  background: $warning-color;
+  color: $white;
 }
 
 .large {
-  font-size: $font-size-base;
-  padding: (2 * $vr) (3 * $vr);
-}
-
-.primary {
-  background: $primary;
-
-  &:hover {
-    border-color: $primary;
-    color: $primary;
-  }
-
-  &:focus {
-    outline-color: $primary;
-  }
-}
-
-.secondary {
-  background: $secondary;
-
-  &:hover {
-    border-color: $secondary;
-    color: $secondary;
-  }
-
-  &:focus {
-    outline-color: $secondary;
-  }
+  font-size: $font-size-sm;
+  padding: (2 * $vr) (4 * $vr);
 }

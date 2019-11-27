@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import { MarginStyleKeys } from 'interfaces/MarginStyleKeys';
 import { BorderRadiusOption } from 'interfaces/BorderRadiusOption';
 import { getMarginProps } from 'utils/helpers';
-import styles from './Image.module.scss';
 import { toSentenceCase } from 'utils/strings/to-sentence-case';
+import styles from './Image.module.scss';
 
 interface ImageProps {
   alt: string;
