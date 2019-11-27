@@ -37,10 +37,10 @@ const App: React.FC = () => {
           efficiantur.
         </Text>
         <Button
+          intent="primary"
           marginBottom={3}
-          onClick={() => setModalVisibility(!isModalVisible)}
+          onClick={() => setModalVisibility(true)}
           text="Click here to learn more"
-          type="primary"
         />
         <Title as="h2" text="No custom CSS" marginBottom={2} />
         <Grid gutters>
@@ -91,9 +91,18 @@ const App: React.FC = () => {
       <Modal
         active={isModalVisible}
         close={() => setModalVisibility(false)}
+        title="Are you sure?"
         showCloseButton
+        primaryButton={{
+          onClick: () => {},
+          text: 'Confirm',
+        }}
+        secondaryButton={{
+          onClick: () => {},
+          text: 'Cancel',
+        }}
       >
-        Hello world
+        <Text>Do you really want to delete this thing?</Text>
       </Modal>
     </Fragment>
   );

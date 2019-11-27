@@ -9,13 +9,19 @@ const common = { text: 'Click here', onClick: () => {} };
 
 export const base = () => <Button {...common} />;
 
-export const primary = () => <Button {...common} type="primary" />;
+export const primary = () => <Button {...common} intent="primary" />;
 
-export const secondary = () => <Button {...common} type="secondary" />;
+export const secondary = () => <Button {...common} intent="secondary" />;
+
+export const success = () => <Button {...common} intent="success" />;
+
+export const error = () => <Button {...common} intent="error" />;
+
+export const warning = () => <Button {...common} intent="warning" />;
 
 export const sizes = () => {
   const size = radios('Size', { Regular: 'regular', Large: 'large' }, 'large');
-  return <Button {...common} type="secondary" size={size as SizeOption} />;
+  return <Button {...common} intent="primary" size={size as SizeOption} />;
 };
 
 export const withMargin = () => (

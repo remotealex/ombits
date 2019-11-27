@@ -4,14 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './CloseButton.module.scss';
+import { IntentOption } from 'interfaces/IntentOption';
+import { toSentenceCase } from 'utils/strings/to-sentence-case';
 
 interface CloseButtonProps {
   close: () => void;
+  intent: IntentOption;
 }
 
-export const CloseButton: React.FC<CloseButtonProps> = ({ close }) => {
+export const CloseButton: React.FC<CloseButtonProps> = ({ close, intent }) => {
   const cls = classNames(styles.closeButton, {
-    // [styles.active]: isContentVisible,
+    [styles[`intent${toSentenceCase(intent)}`]]: intent,
   });
 
   return (

@@ -1,10 +1,10 @@
 @import '../../styles/index.scss';
 
 .button {
-  background: $white;
+  background: transparent;
   border-radius: 3px;
   border: none;
-  color: $black;
+  color: $white;
   cursor: pointer;
   font-size: $font-size-sm;
   font-weight: 600;
@@ -16,16 +16,32 @@
 
   &:hover {
     transform: translateY(1px);
+    opacity: 0.8;
   }
 }
 
-.primary {
+.intentPrimary {
   background: $primary-color;
   color: $white;
 }
 
-.secondary {
+.intentSecondary {
   background: $secondary-color;
+  color: $white;
+}
+
+.intentSuccess {
+  background: $success-color;
+  color: $white;
+}
+
+.intentError {
+  background: $error-color;
+  color: $white;
+}
+
+.intentWarning {
+  background: $warning-color;
   color: $white;
 }
 

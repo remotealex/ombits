@@ -40,11 +40,70 @@ $z-index: 999;
 .modal {
   background: $off-black;
   border-radius: $vr;
+  border: 3px solid $primary-color;
   box-shadow: $base-shadow;
+  max-height: 90vh;
   position: relative; // for close button
+  overflow-y: scroll;
   z-index: $z-index;
+}
+
+.titleWrapper {
+  background: darken($off-black, 2%);
+  border-top-left-radius: $vr;
+  border-top-right-radius: $vr;
+  padding: 3 * $vr;
 }
 
 .content {
   padding: 3 * $vr;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  padding: 0 (3 * $vr) (3 * $vr) (3 * $vr);
+
+  button {
+    flex-basis: 100%;
+
+    &:nth-of-type(2) {
+      margin-bottom: $vr;
+    }
+  }
+
+  @media #{$small-up} {
+    flex-wrap: no-wrap;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    button {
+      flex-basis: auto;
+
+      &:nth-of-type(2) {
+        margin-bottom: 0;
+        margin-left: 2 * $vr;
+      }
+    }
+  }
+}
+
+// Intent colours
+.modalWrapper.intentSuccess {
+  .modal {
+    border-color: $success-color;
+  }
+}
+
+.modalWrapper.intentError {
+  .modal {
+    border-color: $error-color;
+  }
+}
+
+.modalWrapper.intentWarning {
+  .modal {
+    border-color: $warning-color;
+  }
 }

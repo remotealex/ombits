@@ -10,17 +10,10 @@ export const base = () => (
   <div style={{ height: '200vh', width: '100%' }}>
     <Text>You can see the scroll lock working here...</Text>
     <Modal {...common} active={boolean('Open', false)}>
-      <Text>
-        Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
-        eligendi eum id. Usu soleat regione cu, cum cu veri nullam platonem.
-        Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
-        cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur. Eum cibo
-        adipisci consequat at, id usu tation aliquid fabulas. Ad ubique legimus
-        sea, eu habemus inimicus ius. Nec in enim docendi vivendum. Te vim
-        graeci abhorreant. At nec iudico iracundia, euripidis prodesset et pro.
-        Liber lucilius pericula ne sea, ius suscipit explicari reprehendunt et,
-        no ius labitur forensibus.
-      </Text>
+      Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+      eligendi eum id. Usu soleat regione cu, cum cu veri nullam platonem.
+      Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
+      cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur.
     </Modal>
   </div>
 );
@@ -29,6 +22,203 @@ export const withCloseButton = () => (
   <Modal {...common} active={true} showCloseButton>
     Hello world
   </Modal>
+);
+
+export const withTitle = () => (
+  <div style={{ height: '200vh', width: '100%' }}>
+    <Modal {...common} active={true} title="This is a title!!">
+      Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+      Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
+      cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur.
+    </Modal>
+  </div>
+);
+
+export const withPrimaryButton = () => (
+  <div style={{ height: '200vh', width: '100%' }}>
+    <Modal
+      {...common}
+      active={true}
+      primaryButton={{
+        onClick: () => {},
+        text: 'Confirm',
+      }}
+    >
+      Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+      Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
+      cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur.
+    </Modal>
+  </div>
+);
+
+export const withSecondaryButton = () => (
+  <div style={{ height: '200vh', width: '100%' }}>
+    <Modal
+      {...common}
+      active={true}
+      secondaryButton={{
+        onClick: () => {},
+        text: 'Close',
+      }}
+    >
+      Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+      Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
+      cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur.
+    </Modal>
+  </div>
+);
+
+export const withTwoButtons = () => (
+  <div style={{ height: '200vh', width: '100%' }}>
+    <Modal
+      {...common}
+      active={true}
+      primaryButton={{
+        onClick: () => {},
+        text: 'Confirm',
+      }}
+      secondaryButton={{
+        onClick: () => {},
+        text: 'Close',
+      }}
+    >
+      Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+      Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
+      cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur.
+    </Modal>
+  </div>
+);
+
+export const success = () => (
+  <div style={{ height: '200vh', width: '100%' }}>
+    <Modal
+      {...common}
+      active={true}
+      primaryButton={{
+        onClick: () => {},
+        text: 'Confirm',
+      }}
+      secondaryButton={{
+        onClick: () => {},
+        text: 'Close',
+      }}
+      intent="success"
+      showCloseButton
+    >
+      Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+      Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
+      cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur.
+    </Modal>
+  </div>
+);
+
+export const error = () => (
+  <div style={{ height: '200vh', width: '100%' }}>
+    <Modal
+      {...common}
+      active={true}
+      primaryButton={{
+        onClick: () => {},
+        text: 'Confirm',
+      }}
+      secondaryButton={{
+        onClick: () => {},
+        text: 'Close',
+      }}
+      intent="error"
+      showCloseButton
+    >
+      Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+      Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
+      cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur.
+    </Modal>
+  </div>
+);
+
+export const warning = () => (
+  <div style={{ height: '200vh', width: '100%' }}>
+    <Modal
+      {...common}
+      active={true}
+      primaryButton={{
+        onClick: () => {},
+        text: 'Confirm',
+      }}
+      secondaryButton={{
+        onClick: () => {},
+        text: 'Close',
+      }}
+      intent="warning"
+      showCloseButton
+    >
+      Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+      Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
+      cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur.
+    </Modal>
+  </div>
+);
+
+export const withLotsOfText = () => (
+  <div style={{ height: '200vh', width: '100%' }}>
+    <Modal
+      {...common}
+      active={true}
+      primaryButton={{
+        onClick: () => {},
+        text: 'Confirm',
+      }}
+      secondaryButton={{
+        onClick: () => {},
+        text: 'Close',
+      }}
+    >
+      Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+      Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
+      cu. Usu in utamur conclusionemque, eam ut mandamus efficiantur. Lorem
+      ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum Docendi
+      accommodare mei an. Ea populo posidonium nec, eam natum invenire cu. Usu
+      in utamur conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor
+      sit amet, ex omnium epicuri scribentur vim, minimum Docendi accommodare
+      mei an. Ea populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur. Lorem ipsum dolor sit amet,
+      ex omnium epicuri scribentur vim, minimum Docendi accommodare mei an. Ea
+      populo posidonium nec, eam natum invenire cu. Usu in utamur
+      conclusionemque, eam ut mandamus efficiantur.
+    </Modal>
+  </div>
 );
 
 export default { title: 'Modal', decorators: [withKnobs] };
