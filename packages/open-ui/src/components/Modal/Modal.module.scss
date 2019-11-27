@@ -90,6 +90,12 @@ $z-index: 999;
 }
 
 // Intent colours
+.modalWrapper.intentSecondary {
+  .modal {
+    border-color: $secondary-color;
+  }
+}
+
 .modalWrapper.intentSuccess {
   .modal {
     border-color: $success-color;
