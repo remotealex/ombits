@@ -18,6 +18,16 @@
   }
 }
 
+.intentSecondary {
+  background: $secondary-color;
+
+  // Icon
+  svg,
+  svg > * {
+    fill: $black;
+  }
+}
+
 .intentSuccess {
   background: $success-color;
 }

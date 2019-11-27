@@ -18,6 +18,15 @@ export const base = () => (
   </div>
 );
 
+export const secondary = () => (
+  <Modal {...common} active={true} intent="secondary">
+    Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
+    eligendi eum id. Usu soleat regione cu, cum cu veri nullam platonem. Docendi
+    accommodare mei an. Ea populo posidonium nec, eam natum invenire cu. Usu in
+    utamur conclusionemque, eam ut mandamus efficiantur.
+  </Modal>
+);
+
 export const withCloseButton = () => (
   <Modal {...common} active={true}>
     Hello world

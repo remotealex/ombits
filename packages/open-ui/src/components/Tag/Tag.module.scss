@@ -1,20 +1,39 @@
 @import 'styles/index.scss';
 
 .tag {
-  background-color: $grey;
-  border-radius: 50%;
-  color: $black;
+  background: $primary-color;
+  border-radius: 3px;
+  color: $white;
   display: inline-block;
   font-size: $font-size-sm;
-  font-weight: 500;
-  padding: $vr ($vr * 2);
+  font-weight: 600;
+  letter-spacing: 0.75px;
+  padding: (0.5 * $vr) $vr;
   text-transform: uppercase;
-
-  &:hover {
-    background-color: darken($grey, 5%);
-  }
 }
+
 .large {
-  padding: $vr * 1.5;
+  border-radius: 5px;
   font-size: $font-size-base;
+  padding: (0.75 * $vr) (1.25 * $vr);
+}
+
+.intentSecondary {
+  background: $secondary-color;
+  color: $black;
+}
+
+.intentSuccess {
+  background: $success-color;
+  color: $white;
+}
+
+.intentError {
+  background: $error-color;
+  color: $white;
+}
+
+.intentWarning {
+  background: $warning-color;
+  color: $white;
 }
