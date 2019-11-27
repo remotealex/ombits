@@ -2,20 +2,20 @@
 
 .tag {
   background: $primary-color;
-  border-radius: 2 * $vr;
+  border-radius: 3px;
   color: $white;
   display: inline-block;
   font-size: $font-size-sm;
   font-weight: 600;
   letter-spacing: 0.75px;
-  padding: $vr (2 * $vr);
+  padding: (0.5 * $vr) $vr;
   text-transform: uppercase;
 }
 
 .large {
-  border-radius: 3 * $vr;
+  border-radius: 5px;
   font-size: $font-size-base;
-  padding: (1.5 * $vr) (3 * $vr);
+  padding: (0.75 * $vr) (1.25 * $vr);
 }
 
 .intentSecondary {
