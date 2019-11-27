@@ -8,3 +8,5 @@ export * from './components/Navigation';
 export * from './components/Outline';
 export * from './components/Typography';
 export * from './components/Wrapper';
+export * from './components/Tag';
+export * from './components/Image';
