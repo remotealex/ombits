@@ -3,6 +3,13 @@ import { useAnimate } from 'react-simple-animate';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import ScrollLock from 'react-scrolllock';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCheckCircle,
+  faBomb,
+  faExclamationTriangle,
+  faInfoCircle,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { Title } from 'components/Typography';
 import { Button } from 'components/Button';
@@ -18,8 +25,9 @@ interface ButtonProps {
 
 interface ModalProps {
   active: boolean;
-  close: () => void;
+  hideIcon?: boolean;
   intent?: IntentOption;
+  onClose: () => void;
   primaryButton?: ButtonProps;
   secondaryButton?: ButtonProps;
   showCloseButton?: boolean;
@@ -30,7 +38,8 @@ export const Modal: React.FC<ModalProps> = props => {
   const {
     active,
     children,
-    close,
+    onClose,
+    hideIcon,
     intent,
     primaryButton,
     secondaryButton,
@@ -63,18 +72,38 @@ export const Modal: React.FC<ModalProps> = props => {
     [styles.active]: isContentVisible,
   });
 
+  let icon = faInfoCircle;
+  switch (intent) {
+    case 'success':
+      icon = faCheckCircle;
+      break;
+    case 'error':
+      icon = faBomb;
+      break;
+    case 'warning':
+      icon = faExclamationTriangle;
+      break;
+  }
+
   return ReactDOM.createPortal(
     <div style={style}>
-      <div className={overlayCls} onClick={() => close()} />
+      <div className={overlayCls} onClick={() => onClose()} />
       <ScrollLock isActive={active}>
         <div className={modalWrapperCls}>
           {showCloseButton && (
-            <CloseButton close={close} intent={intent || 'primary'} />
+            <CloseButton onClose={onClose} intent={intent || 'primary'} />
           )}
           <div className={styles.modal}>
             {title && (
               <div className={styles.titleWrapper}>
-                <Title as="h4" text={title} />
+                {!hideIcon && (
+                  <FontAwesomeIcon
+                    icon={icon}
+                    size="lg"
+                    style={{ marginRight: '16px' }}
+                  />
+                )}
+                <Title as="h4" text={title} inlineBlock />
               </div>
             )}
             <div className={styles.content}>{children}</div>

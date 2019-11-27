@@ -40,7 +40,7 @@ const App: React.FC = () => {
           intent="primary"
           marginBottom={3}
           onClick={() => setModalVisibility(true)}
-          text="Click here to learn more"
+          text="Click here to view a popup"
         />
         <Title as="h2" text="No custom CSS" marginBottom={2} />
         <Grid gutters>
@@ -91,18 +91,22 @@ const App: React.FC = () => {
       <Modal
         active={isModalVisible}
         close={() => setModalVisibility(false)}
-        title="Are you sure?"
+        title="This is a modal popup"
         showCloseButton
         primaryButton={{
-          onClick: () => {},
-          text: 'Confirm',
+          onClick: () => {
+            alert("You're awesome!");
+          },
+          text: 'Click me...',
         }}
         secondaryButton={{
-          onClick: () => {},
+          onClick: () => {
+            setModalVisibility(false);
+          },
           text: 'Cancel',
         }}
       >
-        <Text>Do you really want to delete this thing?</Text>
+        <Text>It can have anything you want in here!</Text>
       </Modal>
     </Fragment>
   );

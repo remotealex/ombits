@@ -8,11 +8,14 @@ import { IntentOption } from 'interfaces/IntentOption';
 import { toSentenceCase } from 'utils/strings/to-sentence-case';
 
 interface CloseButtonProps {
-  close: () => void;
+  onClose: () => void;
   intent: IntentOption;
 }
 
-export const CloseButton: React.FC<CloseButtonProps> = ({ close, intent }) => {
+export const CloseButton: React.FC<CloseButtonProps> = ({
+  onClose,
+  intent,
+}) => {
   const cls = classNames(styles.closeButton, {
     [styles[`intent${toSentenceCase(intent)}`]]: intent,
   });
@@ -24,7 +27,7 @@ export const CloseButton: React.FC<CloseButtonProps> = ({ close, intent }) => {
         e.preventDefault();
         e.stopPropagation();
         e.currentTarget.blur();
-        close();
+        onClose();
       }}
       title="Close"
     >

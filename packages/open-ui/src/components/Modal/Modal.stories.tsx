@@ -4,7 +4,7 @@ import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { Modal } from './Modal';
 import { Text } from 'components/Typography';
 
-const common = { close: () => {} };
+const common = { onClose: () => {} };
 
 export const base = () => (
   <div style={{ height: '200vh', width: '100%' }}>
@@ -94,6 +94,7 @@ export const success = () => (
     <Modal
       {...common}
       active={true}
+      title="Success!!"
       primaryButton={{
         onClick: () => {},
         text: 'Confirm',
@@ -116,6 +117,7 @@ export const error = () => (
   <div style={{ height: '200vh', width: '100%' }}>
     <Modal
       {...common}
+      title="Ooopps!!"
       active={true}
       primaryButton={{
         onClick: () => {},
@@ -139,6 +141,7 @@ export const warning = () => (
   <div style={{ height: '200vh', width: '100%' }}>
     <Modal
       {...common}
+      title="Warning!!"
       active={true}
       primaryButton={{
         onClick: () => {},
