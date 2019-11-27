@@ -90,9 +90,8 @@ const App: React.FC = () => {
       </Wrapper>
       <Modal
         active={isModalVisible}
-        close={() => setModalVisibility(false)}
+        onClose={() => setModalVisibility(false)}
         title="This is a modal popup"
-        showCloseButton
         primaryButton={{
           onClick: () => {
             alert("You're awesome!");

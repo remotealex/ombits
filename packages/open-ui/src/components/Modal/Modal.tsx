@@ -25,12 +25,12 @@ interface ButtonProps {
 
 interface ModalProps {
   active: boolean;
+  hideCloseButton?: boolean;
   hideIcon?: boolean;
   intent?: IntentOption;
   onClose: () => void;
   primaryButton?: ButtonProps;
   secondaryButton?: ButtonProps;
-  showCloseButton?: boolean;
   title?: string;
 }
 
@@ -38,12 +38,12 @@ export const Modal: React.FC<ModalProps> = props => {
   const {
     active,
     children,
-    onClose,
+    hideCloseButton,
     hideIcon,
     intent,
+    onClose,
     primaryButton,
     secondaryButton,
-    showCloseButton,
     title,
   } = props;
 
@@ -90,7 +90,7 @@ export const Modal: React.FC<ModalProps> = props => {
       <div className={overlayCls} onClick={() => onClose()} />
       <ScrollLock isActive={active}>
         <div className={modalWrapperCls}>
-          {showCloseButton && (
+          {!hideCloseButton && (
             <CloseButton onClose={onClose} intent={intent || 'primary'} />
           )}
           <div className={styles.modal}>

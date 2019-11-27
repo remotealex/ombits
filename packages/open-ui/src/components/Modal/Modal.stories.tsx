@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 
 import { Modal } from './Modal';
@@ -9,7 +9,7 @@ const common = { onClose: () => {} };
 export const base = () => (
   <div style={{ height: '200vh', width: '100%' }}>
     <Text>You can see the scroll lock working here...</Text>
-    <Modal {...common} active={boolean('Open', false)}>
+    <Modal {...common} active={boolean('Open', false)} hideCloseButton>
       Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
       eligendi eum id. Usu soleat regione cu, cum cu veri nullam platonem.
       Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
@@ -19,7 +19,7 @@ export const base = () => (
 );
 
 export const withCloseButton = () => (
-  <Modal {...common} active={true} showCloseButton>
+  <Modal {...common} active={true}>
     Hello world
   </Modal>
 );
@@ -39,6 +39,7 @@ export const withPrimaryButton = () => (
     <Modal
       {...common}
       active={true}
+      hideCloseButton
       primaryButton={{
         onClick: () => {},
         text: 'Confirm',
@@ -104,7 +105,6 @@ export const success = () => (
         text: 'Close',
       }}
       intent="success"
-      showCloseButton
     >
       Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
       Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
@@ -128,7 +128,6 @@ export const error = () => (
         text: 'Close',
       }}
       intent="error"
-      showCloseButton
     >
       Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
       Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
@@ -152,7 +151,6 @@ export const warning = () => (
         text: 'Close',
       }}
       intent="warning"
-      showCloseButton
     >
       Lorem ipsum dolor sit amet, ex omnium epicuri scribentur vim, minimum
       Docendi accommodare mei an. Ea populo posidonium nec, eam natum invenire
