@@ -19,7 +19,9 @@ export const Card: React.FC<CardProps & MarginStyleKeys> = props => {
 
   return (
     <div className={cls} style={marginProps}>
-      {title && <Title as="h4" text={title} marginBottom={1} />}
+      {title && (
+        <Title as="h4" text={title} marginBottom={!!children ? 1 : 0} />
+      )}
       {children}
     </div>
   );
