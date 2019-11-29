@@ -3,7 +3,6 @@ export * from './components/Button';
 export * from './components/Card';
 export * from './components/Grid';
 export * from './components/Image';
-export * from './components/Image';
 export * from './components/Modal';
 export * from './components/Navigation';
 export * from './components/Outline';
