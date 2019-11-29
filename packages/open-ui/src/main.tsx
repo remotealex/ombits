@@ -8,6 +8,5 @@ export * from './components/Modal';
 export * from './components/Navigation';
 export * from './components/Outline';
 export * from './components/Tag';
-export * from './components/Timeline';
 export * from './components/Typography';
 export * from './components/Wrapper';

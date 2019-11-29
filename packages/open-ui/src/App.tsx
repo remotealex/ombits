@@ -7,7 +7,6 @@ import { Grid, Col } from 'components/Grid';
 import { Card } from 'components/Card';
 import { Button } from 'components/Button';
 import { Modal } from 'components/Modal';
-import { Timeline } from 'components/Timeline';
 
 const App: React.FC = () => {
   const [isModalVisible, setModalVisibility] = useState(false);
@@ -88,13 +87,6 @@ const App: React.FC = () => {
             </Card>
           </Col>
         </Grid>
-        <Title as="h3" text="Latest project updates" marginBottom={3} />
-        <Timeline date={new Date('2019-10-25')}>
-          <Card title="This is something I did" />
-        </Timeline>
-        <Timeline date={new Date('2019-10-20')}>
-          <Card title="I did another thing" />
-        </Timeline>
       </Wrapper>
       <Modal
         active={isModalVisible}
