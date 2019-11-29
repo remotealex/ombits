@@ -2,7 +2,7 @@ import React from 'react';
 import { gql } from 'apollo-boost';
 // import { Query } from "react-apollo";
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { AutoGrid, Button } from 'om-ui';
+// import { AutoGrid, Button } from 'om-ui';
 
 const GET_USERS = gql`
   query {
@@ -45,34 +45,34 @@ const App = () => {
           />
         </div>
       ))}
-      <Button text="Test" />
+      {/* <Button text="Test" /> */}
       <br />
-      <AutoGrid>
-        <div
-          style={{
-            background: 'blue',
-            height: '20px',
-            border: '1px solid green',
-            width: '100%',
-          }}
-        />
-        <div
-          style={{
-            background: 'blue',
-            height: '20px',
-            border: '1px solid green',
-            width: '100%',
-          }}
-        />
-        <div
-          style={{
-            background: 'blue',
-            height: '20px',
-            border: '1px solid green',
-            width: '100%',
-          }}
-        />
-      </AutoGrid>
+      {/* <AutoGrid> */}
+      <div
+        style={{
+          background: 'blue',
+          height: '20px',
+          border: '1px solid green',
+          width: '100%',
+        }}
+      />
+      <div
+        style={{
+          background: 'blue',
+          height: '20px',
+          border: '1px solid green',
+          width: '100%',
+        }}
+      />
+      <div
+        style={{
+          background: 'blue',
+          height: '20px',
+          border: '1px solid green',
+          width: '100%',
+        }}
+      />
+      {/* </AutoGrid> */}
     </div>
   );
 };
