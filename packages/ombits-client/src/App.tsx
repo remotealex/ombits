@@ -2,7 +2,7 @@ import React from 'react';
 import { gql } from 'apollo-boost';
 // import { Query } from "react-apollo";
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { AutoGrid, Button } from 'open-ui';
+import { AutoGrid, Button } from 'om-ui';
 
 const GET_USERS = gql`
   query {

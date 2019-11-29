@@ -1,5 +1,5 @@
 {
-  "name": "open-ui",
+  "name": "om-ui",
   "version": "0.0.0",
   "main": "dist/main.js",
   "module": "dist/main.es.js",
