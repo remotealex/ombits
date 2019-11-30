@@ -3,7 +3,7 @@
 .autoGrid {
   display: flex;
 
-  * {
+  > * {
     flex: 0 1 100%;
   }
 }
@@ -42,13 +42,13 @@
 .gutters {
   margin: -$vr;
 
-  * {
+  > * {
     padding: $vr;
   }
 }
 
 .overflowFill {
-  * {
+  > * {
     flex-grow: 1;
   }
 }

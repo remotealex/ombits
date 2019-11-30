@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useInterval } from 'react-use';
+import { DateTime } from 'luxon';
 
 export const Footer = () => {
+  const dt = DateTime.local();
+  const [{ date, time }, setDatetime] = useState({
+    date: dt.toLocaleString(DateTime.DATE_HUGE),
+    time: dt.toLocaleString(DateTime.TIME_SIMPLE),
+  });
+
+  useInterval(() => {
+    setDatetime({
+      date: dt.toLocaleString(DateTime.DATE_HUGE),
+      time: dt.toLocaleString(DateTime.TIME_SIMPLE),
+    });
+  }, 1000);
+
   return (
     <div>
       <time className="date" dateTime="">
-        Thursday, 28th November 2019
+        {date}
       </time>
-      <time className="time">20:13</time>
+      <time className="time">{time}</time>
 
       <style jsx>{`
         div {
