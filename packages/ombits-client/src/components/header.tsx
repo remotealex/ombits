@@ -5,7 +5,7 @@ import { Nav } from './nav';
 
 export const Header = () => {
   const route = useCurrentRoute();
-  const { mode } = route.state;
+  const { navTabText } = route.state;
 
   const [isNavVisible, setNavVisibility] = useState(false);
   const closeNav = useCallback(() => {
@@ -25,7 +25,7 @@ export const Header = () => {
               setNavVisibility(!isNavVisible);
             }}
           >
-            {mode} mode
+            {navTabText}
           </button>
         </div>
       </div>

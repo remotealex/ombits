@@ -1,12 +1,16 @@
 import React from 'react';
-import { Link } from 'react-navi';
+import { useNavigation } from 'react-navi';
 import { Wrapper, AutoGrid, Card, Title } from 'om-ui';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   onCloseNav: () => void;
 }
 
 export const Nav: React.FC<Props> = ({ onCloseNav }) => {
+  const navigation = useNavigation();
+
   return (
     <>
       <Wrapper>
@@ -14,15 +18,42 @@ export const Nav: React.FC<Props> = ({ onCloseNav }) => {
           <Title as="h4" text="Jump to" marginBottom={1} marginTop={2} />
         </div>
         <AutoGrid gutters md={3} marginBottom={2}>
-          <Link href="/" className="nav-link" onClick={onCloseNav}>
-            <Card>Planning mode</Card>
-          </Link>
-          <Link href="/focus" className="nav-link" onClick={onCloseNav}>
-            <Card>Focus mode</Card>
-          </Link>
-          <Link href="/settings" className="nav-link" onClick={onCloseNav}>
-            <Card>Settings mode</Card>
-          </Link>
+          <Card
+            textAlign="center"
+            onClick={() => {
+              navigation.navigate('/');
+              onCloseNav();
+            }}
+          >
+            <FontAwesomeIcon icon={faHome} size="lg" />
+          </Card>
+          <Card
+            textAlign="center"
+            onClick={() => {
+              navigation.navigate('/planning');
+              onCloseNav();
+            }}
+          >
+            Planning mode
+          </Card>
+          <Card
+            textAlign="center"
+            onClick={() => {
+              navigation.navigate('/focus');
+              onCloseNav();
+            }}
+          >
+            Focus mode
+          </Card>
+          {/* <Card
+            textAlign="center"
+            onClick={() => {
+              navigation.navigate('/settings');
+              onCloseNav();
+            }}
+          >
+            Settings mode
+          </Card> */}
         </AutoGrid>
       </Wrapper>
       <style jsx>{`
@@ -84,7 +115,6 @@ export const Nav: React.FC<Props> = ({ onCloseNav }) => {
         .nav-link {
           display: inline-block;
           text-align: center;
-          text-decoration: none;
           transition: all 0.3s;
           width: 100%;
         }

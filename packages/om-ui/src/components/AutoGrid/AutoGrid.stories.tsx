@@ -68,4 +68,19 @@ export const overflowFill = () => (
   </Wrapper>
 );
 
+export const stretch = () => (
+  <Wrapper>
+    <AutoGrid overflowFill base={4} stretch>
+      <div
+        style={{ height: '200px', width: '100%', background: 'blue' }}
+        key="1"
+      />
+      <div
+        style={{ minHeight: '100px', width: '100%', background: 'green' }}
+        key="2"
+      />
+    </AutoGrid>
+  </Wrapper>
+);
+
 export default { title: 'AutoGrid', decorators: [withKnobs] };

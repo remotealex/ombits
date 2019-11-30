@@ -9,10 +9,21 @@ import styles from './AutoGrid.module.scss';
 interface AutoGridProps extends ColSizeProps {
   gutters?: boolean;
   overflowFill?: boolean;
+  stretch?: boolean;
 }
 
 export const AutoGrid: React.FC<AutoGridProps & MarginStyleKeys> = props => {
-  const { children, base, sm, md, lg, xl, gutters, overflowFill } = props;
+  const {
+    base,
+    children,
+    gutters,
+    lg,
+    md,
+    overflowFill,
+    sm,
+    stretch,
+    xl,
+  } = props;
   const marginProps = getMarginProps(props);
 
   // Build the class names
@@ -27,6 +38,7 @@ export const AutoGrid: React.FC<AutoGridProps & MarginStyleKeys> = props => {
       [styles.cols]: base || sm || md || lg || xl,
       [styles.gutters]: gutters,
       [styles.overflowFill]: overflowFill,
+      [styles.stretch]: stretch,
     },
   );
 

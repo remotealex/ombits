@@ -52,3 +52,9 @@
     flex-grow: 1;
   }
 }
+
+.stretch {
+  > * {
+    display: flex;
+  }
+}

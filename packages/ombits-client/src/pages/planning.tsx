@@ -1,29 +1,16 @@
 import React from 'react';
-
-import { Button, Text, Title } from 'om-ui';
+import { Title, Wrapper } from 'om-ui';
 
 export const Planning = () => {
   return (
     <section>
-      <div>
-        <Text as="p" text="Build home page" marginBottom={1} />
-        <Title as="h1" text="Open design" marginBottom={4} />
-        <div className="done">
-          <Button intent="primary" text="Done" marginBottom={1} size="large" />
-        </div>
-        <Button text="Skip" />
-      </div>
+      <Wrapper>
+        <Title as="h2" text="Morning routine" marginBottom={3} />
+      </Wrapper>
 
       <style jsx>{`
         section {
-          align-items: center;
-          bottom: 0;
-          display: flex;
-          justify-content: center;
-          position: absolute;
-          text-align: center;
-          top: 0;
-          width: 100%;
+          padding-top: 80px;
         }
       `}</style>
     </section>
