@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 
 import {
   ADD_NEW_BIT_BELOW,
+  DELETE_BIT,
+  FOCUS_NEXT,
+  FOCUS_PREVIOUS,
   INDENT_BIT,
   UNINDENT_BIT,
   UPDATE_BIT_TITLE,
@@ -29,7 +32,7 @@ export const BitInputs: React.FC<Props> = props => {
         const payload = {
           id: bit.id,
           level: bit.level,
-          bitAboveId: bit.id,
+          numBits: bit.bits.length,
           parentBitId,
         };
 
@@ -47,10 +50,43 @@ export const BitInputs: React.FC<Props> = props => {
                     } else {
                       dispatch({ type: INDENT_BIT, payload });
                     }
+                    return;
                   }
                   if (e.key === 'Enter') {
                     e.preventDefault();
                     dispatch({ type: ADD_NEW_BIT_BELOW, payload });
+                    return;
+                  }
+                  if (e.key === 'Backspace') {
+                    if (bit.title.length === 0) {
+                      e.preventDefault();
+                      dispatch({ type: DELETE_BIT, payload });
+                      return;
+                    }
+                  }
+                  if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    dispatch({ type: FOCUS_PREVIOUS, payload });
+                    // Delete the bit if it's empty
+                    if (bit.title === '') {
+                      dispatch({
+                        type: DELETE_BIT,
+                        payload: { ...payload, noFocus: true },
+                      });
+                    }
+                    return;
+                  }
+                  if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    dispatch({ type: FOCUS_NEXT, payload });
+                    // Delete the bit if it's empty
+                    if (bit.title === '') {
+                      dispatch({
+                        type: DELETE_BIT,
+                        payload: { ...payload, noFocus: true },
+                      });
+                    }
+                    return;
                   }
                 }}
                 onChange={e => {
@@ -84,6 +120,7 @@ export const BitInputs: React.FC<Props> = props => {
           opacity: 0.4;
           outline: none;
           transition: opacity 0.2s ease;
+          width: 100%;
         }
 
         input:focus {

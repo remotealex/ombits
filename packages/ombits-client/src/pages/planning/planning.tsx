@@ -28,9 +28,9 @@ export const Planning = () => {
   useKey('Shift', () => setShiftPressedState(false), { event: 'keyup' });
 
   // Keeping for reference for now
-  // console.log(denormalizeBits(state.result, { bits: state.bits }));
 
   console.log('bits:', state.bits);
+  // console.log(denormalizeBits(state.result, { bits: state.bits }));
 
   return (
     <section>

@@ -12,9 +12,11 @@ export interface State {
 }
 
 export interface Payload {
+  bitAboveId: string;
   id: string;
   level: number;
-  bitAboveId: string;
+  noFocus?: boolean;
+  numBits: number;
   parentBitId: string;
   title?: string;
 }
