@@ -1,4 +1,6 @@
 import typescript from 'rollup-plugin-typescript2';
+import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import pkg from './package.json';
 
@@ -14,14 +16,11 @@ export default {
       format: 'es',
     },
   ],
-  external: [
-    ...Object.keys(pkg.dependencies || {}),
-    ...Object.keys(pkg.peerDependencies || {}),
-  ],
+  external: ['react', 'react-dom'],
   plugins: [
-    typescript({
-      typescript: require('typescript'),
-    }),
+    resolve(),
+    commonjs(),
+    typescript({ typescript: require('typescript') }),
     postcss({}),
   ],
 };

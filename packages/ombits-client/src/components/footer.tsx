@@ -25,20 +25,25 @@ export const Footer = () => {
 
       <style jsx>{`
         div {
+          background: #16161a;
+          border-radius: 99px;
           bottom: 0;
           font-size: 14px;
-          opacity: 0.2;
+          left: 50%;
           padding: 16px;
-          position: absolute;
+          position: fixed;
           text-align: center;
-          width: 100%;
+          transform: translateX(-50%);
+          z-index: 99;
         }
 
         time {
+          color: rgba(255, 255, 255, 0.2);
           display: block;
         }
 
         .date {
+          color: rgba(255, 255, 255, 0.2);
           margin-bottom: 8px;
         }
       `}</style>

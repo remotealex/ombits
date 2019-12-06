@@ -10,9 +10,9 @@ import { Layout } from './components/layout';
 
 // import * as serviceWorker from './serviceWorker';
 
-// Pass your GraphQL endpoint to uri
+// Pass our GraphQL endpoint to uri
 const client = new ApolloClient({
-  uri: 'https://api-euwest.graphcms.com/v1/ck3a2r9dn1xth01b432c08dps/master',
+  uri: 'http://localhost:4000/graphql',
 });
 
 const Root = (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCurrentRoute, useViewElement } from 'react-navi';
 import { animated, useTransition } from 'react-spring';
+import 'nprogress/nprogress.css';
 
 export const App = () => {
   const currentRoute = useCurrentRoute();

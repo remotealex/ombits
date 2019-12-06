@@ -1,16 +1,24 @@
 import React from 'react';
 import { Title, Wrapper, AutoGrid, Card } from 'om-ui';
 import { useNavigation } from 'react-navi';
+import { useQuery } from '@apollo/react-hooks';
+
+import { GET_USER } from '../queries/get-user';
 
 export const Home = () => {
   const navigation = useNavigation();
+  const { loading, error, data } = useQuery(GET_USER);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error :(</div>;
+
   return (
     <section>
       <Wrapper>
         <Title as="h2" text="Your bits" marginBottom={3} />
         <AutoGrid gutters sm={2} md={3} stretch>
           <Card
-            title="Morning routine"
+            title={data.user.projectName}
             onClick={() => {
               navigation.navigate('/planning');
             }}
