@@ -13,10 +13,11 @@ interface ButtonProps {
   onClick: () => void;
   size?: SizeOption;
   text: string;
+  type?: 'button' | 'submit';
 }
 
 export const Button: React.FC<ButtonProps & MarginStyleKeys> = props => {
-  const { intent, text, size, onClick } = props;
+  const { intent, text, size, onClick, type } = props;
   const marginProps = getMarginProps(props);
 
   // Build the class names
@@ -29,12 +30,15 @@ export const Button: React.FC<ButtonProps & MarginStyleKeys> = props => {
     <button
       className={cls}
       style={marginProps}
+      type={type || 'button'}
       onClick={e => {
-        e.preventDefault();
-        e.stopPropagation();
-        e.currentTarget.blur();
-        onClick();
-        return null;
+        if (type !== 'submit') {
+          e.preventDefault();
+          e.stopPropagation();
+          e.currentTarget.blur();
+          onClick();
+          return null;
+        }
       }}
     >
       {text}

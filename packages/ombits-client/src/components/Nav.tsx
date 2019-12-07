@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigation } from 'react-navi';
+import { useNavigation, useCurrentRoute } from 'react-navi';
 import { Wrapper, AutoGrid, Card, Title } from 'om-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,10 @@ interface Props {
 
 export const Nav: React.FC<Props> = ({ onCloseNav }) => {
   const navigation = useNavigation();
+  const route = useCurrentRoute();
+  const { isFocusMode, isPlanningMode } = route.state;
+
+  console.log(route);
 
   return (
     <>
@@ -17,7 +21,7 @@ export const Nav: React.FC<Props> = ({ onCloseNav }) => {
         <div className="title">
           <Title as="h4" text="Jump to" marginBottom={1} marginTop={2} />
         </div>
-        <AutoGrid gutters md={3} marginBottom={2}>
+        <AutoGrid gutters md={2} marginBottom={2}>
           <Card
             textAlign="center"
             onClick={() => {
@@ -27,24 +31,28 @@ export const Nav: React.FC<Props> = ({ onCloseNav }) => {
           >
             <FontAwesomeIcon icon={faHome} size="lg" />
           </Card>
-          <Card
-            textAlign="center"
-            onClick={() => {
-              navigation.navigate('/planning');
-              onCloseNav();
-            }}
-          >
-            Planning mode
-          </Card>
-          <Card
-            textAlign="center"
-            onClick={() => {
-              navigation.navigate('/focus');
-              onCloseNav();
-            }}
-          >
-            Focus mode
-          </Card>
+          {!isPlanningMode && (
+            <Card
+              textAlign="center"
+              onClick={() => {
+                navigation.navigate('/');
+                onCloseNav();
+              }}
+            >
+              Planning mode
+            </Card>
+          )}
+          {!isFocusMode && (
+            <Card
+              textAlign="center"
+              onClick={() => {
+                navigation.navigate('/focus');
+                onCloseNav();
+              }}
+            >
+              Focus mode
+            </Card>
+          )}
           {/* <Card
             textAlign="center"
             onClick={() => {

@@ -15,19 +15,21 @@ export const Header = () => {
   return (
     <>
       <div className="header">
-        <div className={'nav' + (isNavVisible ? ' nav--visible' : '')}>
-          <Nav onCloseNav={closeNav} />
-          <button
-            className="mode"
-            onClick={e => {
-              e.preventDefault();
-              e.currentTarget.blur();
-              setNavVisibility(!isNavVisible);
-            }}
-          >
-            {navTabText}
-          </button>
-        </div>
+        {navTabText && (
+          <div className={'nav' + (isNavVisible ? ' nav--visible' : '')}>
+            <Nav onCloseNav={closeNav} />
+            <button
+              className="mode"
+              onClick={e => {
+                e.preventDefault();
+                e.currentTarget.blur();
+                setNavVisibility(!isNavVisible);
+              }}
+            >
+              {navTabText}
+            </button>
+          </div>
+        )}
       </div>
 
       {isNavVisible && <div className="overlay" onClick={closeNav} />}
