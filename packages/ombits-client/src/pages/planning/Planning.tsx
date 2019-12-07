@@ -10,12 +10,18 @@ import { reducer } from './reducer';
 import { BitInputs } from './BitInputs';
 import { State, Payload } from './interfaces';
 import { Action } from '../../interfaces/action';
-import { GET_USER } from '../../queries/get-user';
-import { UPDATE_PROJECT_NAME } from '../../mutations/update-project-name';
+import { GET_PROJECT } from '../../queries/projects';
+import { UPDATE_PROJECT_TITLE } from '../../mutations/projects';
 
-export const Planning = () => {
-  const { loading, error, data } = useQuery(GET_USER);
-  const [updateName] = useMutation(UPDATE_PROJECT_NAME);
+interface Props {
+  projectId: string;
+}
+
+export const Planning: React.FC<Props> = ({ projectId }) => {
+  const { loading, error, data } = useQuery(GET_PROJECT, {
+    variables: { _id: projectId },
+  });
+  const [updateTitle] = useMutation(UPDATE_PROJECT_TITLE);
 
   // Bits can be deeply nested so we normalize them first
   const { entities, result } = normalizeBits(initialState.bits);
@@ -32,8 +38,8 @@ export const Planning = () => {
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    if (data && data.user) {
-      setTitle(data.user.projectName);
+    if (data && data.project) {
+      setTitle(data.project.title);
     }
   }, [data]);
 
@@ -64,7 +70,7 @@ export const Planning = () => {
             onBlur={async (isChanged: boolean) => {
               if (isChanged) {
                 NProgress.start();
-                await updateName({ variables: { projectName: title } });
+                await updateTitle({ variables: { projectName: title } });
                 NProgress.done();
               }
             }}

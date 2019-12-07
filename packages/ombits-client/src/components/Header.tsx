@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useCurrentRoute } from 'react-navi';
 
-import { Nav } from './nav';
+import { Nav } from './Nav';
 
 export const Header = () => {
   const route = useCurrentRoute();

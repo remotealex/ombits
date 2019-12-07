@@ -14,18 +14,6 @@ export class UsersService {
     return await createdUser.save();
   }
 
-  async updateProjectName(
-    _id: Schema.Types.ObjectId,
-    projectName: string,
-  ): Promise<User> {
-    const updatedUser = await this.userModel.findOneAndUpdate(
-      { _id },
-      { $set: { projectName } },
-      { new: true }, // Return updated
-    );
-    return updatedUser;
-  }
-
   async findOneById(_id: Schema.Types.ObjectId): Promise<User> {
     const user = await this.userModel.findOne({ _id });
     if (!user) {

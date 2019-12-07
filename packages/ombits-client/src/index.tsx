@@ -6,7 +6,7 @@ import { Router } from 'react-navi';
 
 import { routes } from './routes';
 import { App } from './app';
-import { Layout } from './components/layout';
+import { Layout } from './components/Layout';
 
 // import * as serviceWorker from './serviceWorker';
 

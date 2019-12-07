@@ -20,7 +20,7 @@ export class UsersResolver {
   }
 
   @Mutation()
-  async create(
+  async createUser(
     @Args('firstName') firstName: string,
     @Args('lastName') lastName: string,
   ) {
@@ -28,14 +28,6 @@ export class UsersResolver {
       firstName,
       lastName,
     });
-  }
-
-  @Mutation()
-  async updateProjectName(
-    @Args('_id') _id: Schema.Types.ObjectId,
-    @Args('projectName') projectName: string,
-  ) {
-    return await this.usersService.updateProjectName(_id, projectName);
   }
 
   // @ResolveProperty()

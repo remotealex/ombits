@@ -1,21 +1,23 @@
 import React from 'react';
 import { mount, route } from 'navi';
 
-import { Focus } from './pages/focus';
-import { Home } from './pages/home';
+import { Focus } from './pages/Focus';
+import { Home } from './pages/Home';
 import { Planning } from './pages/planning';
 
 export const routes = mount({
   '/': route({
-    getState: () => ({ navTabText: 'Home' }),
+    state: { navTabText: 'Home' },
     view: <Home />,
   }),
-  '/planning': route({
-    getState: () => ({ navTabText: 'Planning mode' }),
-    view: <Planning />,
+  '/planning/:_id': route(req => {
+    return {
+      state: { navTabText: 'Planning mode' },
+      view: <Planning projectId={req.params._id} />,
+    };
   }),
   '/focus': route({
-    getState: () => ({ navTabText: 'Focus mode' }),
+    state: { navTabText: 'Focus mode' },
     view: <Focus />,
   }),
 });
