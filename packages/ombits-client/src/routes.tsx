@@ -3,7 +3,7 @@ import { mount, route } from 'navi';
 
 import { Focus } from './pages/Focus';
 import { Home } from './pages/Home';
-import { Planning } from './pages/planning';
+import { Planning } from './pages/Planning';
 
 export const routes = mount({
   '/': route({
