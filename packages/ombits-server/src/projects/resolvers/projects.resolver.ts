@@ -8,13 +8,13 @@ export class ProjectsResolver {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Query()
-  async projects() {
-    return this.projectsService.findAll();
+  async getProject(@Args('_id') _id: Schema.Types.ObjectId) {
+    return this.projectsService.findOne(_id);
   }
 
   @Query()
-  async project(@Args('_id') _id: Schema.Types.ObjectId) {
-    return this.projectsService.findOne(_id);
+  async getProjects() {
+    return this.projectsService.findAll();
   }
 
   @Mutation()

@@ -1,14 +1,28 @@
-type Project {
+scalar Date
+
+type Bit {
   _id: ID!
   title: String!
+  bits: [Bit]!
+  isComplete: Boolean!
+}
+
+type Project {
+  _id: ID!
+  userId: ID!
+  title: String!
+  bits: [Bit]!
+  isComplete: Boolean!
+  createdAt: Date!
+  updatedAt: Date!
 }
 
 type Query {
-  project(_id: ID!): Project
+  getProject(_id: ID!): Project
 }
 
 type Query {
-  projects: [Project]
+  getProjects: [Project]
 }
 
 type Mutation {
