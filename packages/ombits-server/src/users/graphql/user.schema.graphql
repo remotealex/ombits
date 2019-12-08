@@ -1,0 +1,21 @@
+scalar Date
+
+type User {
+  # Object properties
+  _id: ID!
+  firstName: String
+  lastName: String
+  createdAt: Date!
+  updatedAt: Date!
+
+  # External properties
+  projects: [Project]
+}
+
+type Query {
+  getUser(_id: ID!): User
+}
+
+type Mutation {
+  createUser(firstName: String!, lastName: String!): User
+}

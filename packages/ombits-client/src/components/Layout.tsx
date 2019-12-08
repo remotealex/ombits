@@ -1,8 +1,18 @@
 import React from 'react';
 import { useCurrentRoute, useViewElement } from 'react-navi';
 import { animated, useTransition } from 'react-spring';
+import 'nprogress/nprogress.css';
 
-export const App = () => {
+import { Header } from './Header';
+import { Footer } from './Footer';
+
+interface Props {
+  currentUser: any;
+  onLogout: () => void;
+}
+
+export const Layout: React.FC<Props> = props => {
+  const { currentUser, onLogout } = props;
   const currentRoute = useCurrentRoute();
   const viewElement = useViewElement();
   const transitions = useTransition(viewElement, currentRoute.url.href, {
@@ -12,7 +22,8 @@ export const App = () => {
   });
 
   return (
-    <>
+    <div className="layout">
+      <Header />
       {transitions.map(({ item, props: style, key }) => (
         <animated.div
           key={key}
@@ -27,6 +38,15 @@ export const App = () => {
           {item}
         </animated.div>
       ))}
-    </>
+      {!!currentUser && <Footer onLogout={onLogout} />}
+
+      <style jsx>{`
+        .layout {
+          height: 100vh;
+          min-height: 500px;
+          position: relative;
+        }
+      `}</style>
+    </div>
   );
 };

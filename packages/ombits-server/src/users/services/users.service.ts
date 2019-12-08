@@ -1,27 +1,21 @@
+import { Model, Schema } from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectModel } from '@nestjs/mongoose';
 
-import { User } from '../../graphql';
-import { User as UserEntity } from '../entities/user.entity';
+import { User } from '../interfaces/user.interface';
 import { CreateUserDTO } from '../dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
-  ) {}
+  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  async create({ firstName, lastName }: CreateUserDTO): Promise<User> {
-    const user = new UserEntity();
-    user.firstName = firstName;
-    user.lastName = lastName;
-    return await this.userRepository.save(user);
+  async create(userData: CreateUserDTO): Promise<User> {
+    const createdUser = new this.userModel(userData);
+    return await createdUser.save();
   }
 
-  async findOneById(id: number): Promise<User> {
-    const user = await this.userRepository.findOne(id);
+  async findOneById(_id: Schema.Types.ObjectId): Promise<User> {
+    const user = await this.userModel.findOne({ _id });
     if (!user) {
       throw new NotFoundException('No user found for this ID');
     }

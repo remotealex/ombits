@@ -1,0 +1,34 @@
+scalar Date
+
+type Bit {
+  _id: ID!
+  title: String!
+  bits: [Bit]!
+  isComplete: Boolean!
+}
+
+type Project {
+  _id: ID!
+  userId: ID!
+  title: String!
+  bits: [Bit]!
+  isComplete: Boolean!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type Query {
+  getProject(_id: ID!): Project
+}
+
+type Query {
+  getProjects: [Project]
+}
+
+type Mutation {
+  createProject(title: String!): Project
+}
+
+type Mutation {
+  updateProjectTitle(_id: ID!, title: String!): Project
+}

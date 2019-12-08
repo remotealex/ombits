@@ -1,0 +1,17 @@
+@import '../../../styles/index.scss';
+
+.editableTitle {
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    background: $primary-color;
+    opacity: 1;
+  }
+}
