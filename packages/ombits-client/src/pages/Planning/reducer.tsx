@@ -7,20 +7,20 @@ import { State, Payload } from './interfaces';
 import {
   ADD_NEW_BIT_BELOW,
   DELETE_BIT,
+  FOCUS_NEXT,
+  FOCUS_PREVIOUS,
   INDENT_BIT,
   UNINDENT_BIT,
   UPDATE_BIT_TITLE,
-  FOCUS_PREVIOUS,
-  FOCUS_NEXT,
 } from './action-types';
 
 // Immer reducer
 export const reducer = produce((draft: State, action: Action<Payload>) => {
-  const { id, level, numBits, parentBitId, noFocus } = action.payload;
+  const { _id, level, numBits, parentBitId, noFocus } = action.payload;
 
   const bitIdx = parentBitId
-    ? draft.bits[parentBitId].bits.findIndex(_id => _id === id)
-    : draft.result.findIndex(_id => _id === id);
+    ? draft.bits[parentBitId].bits.findIndex(id => id === _id)
+    : draft.result.findIndex(id => id === _id);
 
   // If there is no parent ID, we use the results array as it's the top level
   const siblingBits = parentBitId ? draft.bits[parentBitId].bits : draft.result;
@@ -28,7 +28,6 @@ export const reducer = produce((draft: State, action: Action<Payload>) => {
   // This is a recursive function to find the lowest child of the bit above
   const getPreviousBitId = (_id: string, idx: number): string => {
     const bitsOfPreviousBit = draft.bits[_id].bits;
-    console.log(Object.values(bitsOfPreviousBit));
     if (bitsOfPreviousBit.length === 0 || idx === 0) {
       return _id;
     }
@@ -58,7 +57,7 @@ export const reducer = produce((draft: State, action: Action<Payload>) => {
 
   switch (action.type) {
     case UPDATE_BIT_TITLE:
-      draft.bits[id].title = action.payload.title || '';
+      draft.bits[_id].title = action.payload.title || '';
       break;
 
     case FOCUS_PREVIOUS:
@@ -66,7 +65,7 @@ export const reducer = produce((draft: State, action: Action<Payload>) => {
 
       // If we're trying to go up from the very top result
       // go to the very bottom result
-      if (draft.result[0] === id) {
+      if (draft.result[0] === _id) {
         const lastResultIdx = draft.result.length - 1;
         previousId = getPreviousBitId(
           draft.result[lastResultIdx],
@@ -98,7 +97,7 @@ export const reducer = produce((draft: State, action: Action<Payload>) => {
       // Otherwise, find the next cousin.
       const nextBitId =
         numBits > 0
-          ? draft.bits[id].bits[0]
+          ? draft.bits[_id].bits[0]
           : siblingBits.length - bitIdx > 1
           ? siblingBits[bitIdx + 1]
           : getNextBitId(parentBitId);
@@ -120,25 +119,26 @@ export const reducer = produce((draft: State, action: Action<Payload>) => {
       break;
 
     case INDENT_BIT:
+      console.log(bitIdx);
       // We don't want to indent it if it's the first child as it doesn't make sense
       if (bitIdx === 0) {
         break;
       }
 
       // Update the level of the bit and it's children
-      draft.bits[id].level++;
-      draft.bits[id].bits.forEach(_id => draft.bits[_id].level++);
+      draft.bits[_id].level++;
+      draft.bits[_id].bits.forEach(_id => draft.bits[_id].level++);
 
       // Firstly we need to move the bit to the correct parent
       const newParentId = siblingBits[bitIdx - 1];
 
       // Then we need to add the id to the NEW parent
-      draft.bits[newParentId].bits.push(id);
+      draft.bits[newParentId].bits.push(_id);
 
       // And then remove the it from the old one
       siblingBits.splice(bitIdx, 1);
 
-      focusEl(id);
+      focusEl(_id);
       break;
 
     case UNINDENT_BIT:
@@ -152,13 +152,13 @@ export const reducer = produce((draft: State, action: Action<Payload>) => {
 
       // Add it to the grandparent
       const { grandparentBits, parentBitIdx } = getGrandParentInfo(parentBitId);
-      grandparentBits.splice(parentBitIdx + 1, 0, id);
+      grandparentBits.splice(parentBitIdx + 1, 0, _id);
 
       // Update the level and levels of it's children
-      draft.bits[id].level--;
-      draft.bits[id].bits.forEach(_id => draft.bits[_id].level--);
+      draft.bits[_id].level--;
+      draft.bits[_id].bits.forEach(_id => draft.bits[_id].level--);
 
-      focusEl(id);
+      focusEl(_id);
       break;
 
     case ADD_NEW_BIT_BELOW:
@@ -166,7 +166,7 @@ export const reducer = produce((draft: State, action: Action<Payload>) => {
 
       // Add a new empty bit to the normalized bits object
       draft.bits[newId] = {
-        id: newId,
+        _id: newId,
         title: '',
         level,
         bits: [],

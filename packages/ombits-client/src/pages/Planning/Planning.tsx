@@ -1,17 +1,11 @@
-import React, { useReducer, useState, Reducer, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EditableTitle, Wrapper } from 'om-ui';
-import { useKey } from 'react-use';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import NProgress from 'nprogress';
 
-import { normalizeBits } from '../../utils/normalize-bits';
-import { initialState } from './initial-state';
-import { reducer } from './reducer';
-import { BitInputs } from './BitInputs';
-import { State, Payload } from './interfaces';
-import { Action } from '../../interfaces/action';
 import { GET_PROJECT } from '../../queries/projects';
 import { UPDATE_PROJECT_TITLE } from '../../mutations/projects';
+import { BitsSection } from './BitsSection';
 
 interface Props {
   projectId: string;
@@ -23,40 +17,17 @@ export const Planning: React.FC<Props> = ({ projectId }) => {
   });
   const [updateTitle] = useMutation(UPDATE_PROJECT_TITLE);
 
-  // Bits can be deeply nested so we normalize them first
-  const { entities, result } = normalizeBits(initialState.bits);
-
-  // Then we setup the reducer
-  const [state, dispatch] = useReducer<Reducer<State, Action<Payload>>>(
-    reducer,
-    {
-      bits: entities.bits,
-      result,
-    },
-  );
-
   const [title, setTitle] = useState('');
 
+  // Populate the state once data has loaded
   useEffect(() => {
     if (data && data.project) {
       setTitle(data.project.title);
     }
   }, [data]);
 
-  // Track if the Shift key is being held
-  const [isShiftPressed, setShiftPressedState] = useState(false);
-  useKey('Shift', () => setShiftPressedState(true), { event: 'keydown' });
-  useKey('Shift', () => setShiftPressedState(false), { event: 'keyup' });
-
-  // Keeping for reference for now
-
-  // console.log('bits:', state.bits);
-  // console.log(denormalizeBits(state.result, { bits: state.bits }));
-
-  if (loading) return <div>Loading...</div>;
+  if (loading || !data || !data.project) return <div>Loading...</div>;
   if (error) return <div>Error :(</div>;
-
-  // console.log(data);
 
   return (
     <section>
@@ -76,12 +47,7 @@ export const Planning: React.FC<Props> = ({ projectId }) => {
             }}
           />
         </div>
-        <BitInputs
-          bitIds={state.result}
-          dispatch={dispatch}
-          isShiftPressed={isShiftPressed}
-          state={state}
-        />
+        <BitsSection bits={data.project.bits} />
       </Wrapper>
 
       <style jsx>{`

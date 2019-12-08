@@ -25,7 +25,7 @@ export const Home = () => {
                 navigation.navigate(`/planning/${project._id}`);
               }}
             >
-              0 bits
+              {project.bits.length} bits
             </Card>
           ))}
           <Card

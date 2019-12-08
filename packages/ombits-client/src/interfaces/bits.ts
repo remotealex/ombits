@@ -1,6 +1,6 @@
 export interface Bit {
-  id: string;
+  _id: string;
   title: string;
-  bits: Bit[];
   level: number;
+  bits: Bit[];
 }

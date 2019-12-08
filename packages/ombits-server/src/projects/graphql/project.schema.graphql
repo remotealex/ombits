@@ -3,8 +3,9 @@ scalar Date
 type Bit {
   _id: ID!
   title: String!
-  bits: [Bit]!
+  level: Int!
   isComplete: Boolean!
+  bits: [Bit]!
 }
 
 type Project {
@@ -18,11 +19,11 @@ type Project {
 }
 
 type Query {
-  getProject(_id: ID!): Project
+  project(_id: ID!): Project
 }
 
 type Query {
-  getProjects: [Project]
+  projects: [Project]
 }
 
 type Mutation {

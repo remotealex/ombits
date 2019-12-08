@@ -23,24 +23,24 @@ export const BitInputs: React.FC<Props> = props => {
   const { bitIds, dispatch, isShiftPressed, parentBitId, state } = props;
 
   // Get the normalized bit objects from the store
-  const bits = bitIds.map(id => state.bits[id]);
+  const bits = bitIds.map(_id => state.bits[_id]);
 
   return (
     <div>
       {bits.map(bit => {
         // Setup the payload for easy use
         const payload = {
-          id: bit.id,
+          _id: bit._id,
           level: bit.level,
           numBits: bit.bits.length,
           parentBitId,
         };
 
         return (
-          <Fragment key={bit.id}>
+          <Fragment key={bit._id}>
             <div style={{ marginLeft: `${bit.level * 16 * 2}px` }}>
               <input
-                id={bit.id}
+                id={bit._id}
                 value={bit.title}
                 onKeyDown={e => {
                   if (e.key === 'Tab') {
@@ -93,7 +93,7 @@ export const BitInputs: React.FC<Props> = props => {
                   const title = e.currentTarget.value;
                   dispatch({
                     type: UPDATE_BIT_TITLE,
-                    payload: { id: bit.id, title },
+                    payload: { _id: bit._id, title },
                   });
                 }}
               />
@@ -103,7 +103,7 @@ export const BitInputs: React.FC<Props> = props => {
                 bitIds={bit.bits}
                 dispatch={dispatch}
                 isShiftPressed={isShiftPressed}
-                parentBitId={bit.id}
+                parentBitId={bit._id}
                 state={state}
               />
             )}

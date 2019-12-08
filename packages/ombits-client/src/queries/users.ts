@@ -1,12 +1,18 @@
 import { gql } from 'apollo-boost';
 
 export const GET_USER = gql`
-  query {
-    user(_id: "5deab9ed470df97d3f67f206") {
+  query($_id: ID!) {
+    user(_id: $_id) {
       _id
       firstName
       lastName
-      projectName
+      projects {
+        _id
+        title
+        bits {
+          _id
+        }
+      }
     }
   }
 `;

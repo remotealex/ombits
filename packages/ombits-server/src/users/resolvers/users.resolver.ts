@@ -18,7 +18,7 @@ export class UsersResolver {
     private readonly projectsService: ProjectsService,
   ) {}
 
-  @Query()
+  @Query('user')
   async getUser(@Args('_id') _id: Schema.Types.ObjectId) {
     return this.usersService.findOneById(_id);
   }

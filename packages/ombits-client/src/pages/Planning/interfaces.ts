@@ -4,16 +4,18 @@ interface NormalizedBit extends Omit<Bit, 'bits'> {
   bits: string[];
 }
 
+export interface NormalizedBitsObject {
+  [id: string]: NormalizedBit;
+}
+
 export interface State {
-  bits: {
-    [id: string]: NormalizedBit;
-  };
+  bits: NormalizedBitsObject;
   result: string[];
 }
 
 export interface Payload {
+  _id: string;
   bitAboveId: string;
-  id: string;
   level: number;
   noFocus?: boolean;
   numBits: number;

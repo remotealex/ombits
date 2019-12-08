@@ -13,8 +13,6 @@ export const Nav: React.FC<Props> = ({ onCloseNav }) => {
   const route = useCurrentRoute();
   const { isFocusMode, isPlanningMode } = route.state;
 
-  console.log(route);
-
   return (
     <>
       <Wrapper>

@@ -8,25 +8,29 @@ interface Props {
 }
 
 export const Login: React.FC<Props> = ({ authService }) => {
-  const [name, setName] = useState('');
+  const [userId, setUserId] = useState('5deab9ed470df97d3f67f206');
 
   return (
     <Wrapper marginTop={4}>
       <form
         onSubmit={e => {
           e.preventDefault();
-          authService.login({ _id: 'test', firstName: name, lastName: '' });
+          authService.login({
+            _id: userId,
+            firstName: 'Alex',
+            lastName: 'Price',
+          });
         }}
       >
         <Title as="h2" text="Who goes there?" marginBottom={2} />
-        <Text marginBottom={2}>Your name, please:</Text>
+        <Text marginBottom={2}>Your userId, please:</Text>
         <input
           onChange={e => {
-            setName(e.currentTarget.value);
+            setUserId(e.currentTarget.value);
           }}
-          placeholder="First name"
+          placeholder="5deab9ed470df97d3f67f206"
           style={{ color: 'black', padding: '8px 16px', marginBottom: '16px' }}
-          value={name}
+          value={userId}
         />
         <br />
         <Button type="submit" text="Login" intent="primary" />

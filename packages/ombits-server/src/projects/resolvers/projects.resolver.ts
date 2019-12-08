@@ -7,12 +7,12 @@ import { Schema } from 'mongoose';
 export class ProjectsResolver {
   constructor(private readonly projectsService: ProjectsService) {}
 
-  @Query()
+  @Query('project')
   async getProject(@Args('_id') _id: Schema.Types.ObjectId) {
     return this.projectsService.findOne(_id);
   }
 
-  @Query()
+  @Query('projects')
   async getProjects() {
     return this.projectsService.findAll();
   }
