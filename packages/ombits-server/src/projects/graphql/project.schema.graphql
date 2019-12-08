@@ -33,3 +33,14 @@ type Mutation {
 type Mutation {
   updateProjectTitle(_id: ID!, title: String!): Project
 }
+
+input BitInput {
+  _id: ID!
+  title: String!
+  level: Int!
+  bits: [BitInput]!
+}
+
+type Mutation {
+  updateProjectBits(_id: ID!, bits: [BitInput]!): Project
+}

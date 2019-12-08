@@ -1,5 +1,7 @@
 import { gql } from 'apollo-boost';
 
+import { allBits } from '../fragments/projects';
+
 export const GET_PROJECTS = gql`
   query {
     projects {
@@ -13,46 +15,12 @@ export const GET_PROJECTS = gql`
 `;
 
 export const GET_PROJECT = gql`
-  fragment BitParts on Bit {
-    _id
-    title
-    level
-  }
-
   query($_id: ID!) {
     project(_id: $_id) {
       _id
       title
-      bits {
-        ...BitParts
-        bits {
-          ...BitParts
-          bits {
-            ...BitParts
-            bits {
-              ...BitParts
-              bits {
-                ...BitParts
-                bits {
-                  ...BitParts
-                  bits {
-                    ...BitParts
-                    bits {
-                      ...BitParts
-                      bits {
-                        ...BitParts
-                        bits {
-                          ...BitParts
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      ...AllBits
     }
   }
+  ${allBits}
 `;

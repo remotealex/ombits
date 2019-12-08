@@ -1,7 +1,8 @@
 import { Resolver, Args, Query, Mutation } from '@nestjs/graphql';
+import { Schema } from 'mongoose';
 
 import { ProjectsService } from '../services/projects.service';
-import { Schema } from 'mongoose';
+import { Bit } from '../interfaces/bit.interface';
 
 @Resolver('Project')
 export class ProjectsResolver {
@@ -30,5 +31,13 @@ export class ProjectsResolver {
     @Args('title') title: string,
   ) {
     return await this.projectsService.updateTitle(_id, title);
+  }
+
+  @Mutation()
+  async updateProjectBits(
+    @Args('_id') _id: Schema.Types.ObjectId,
+    @Args('bits') bits: Bit[],
+  ) {
+    return await this.projectsService.updateBits(_id, bits);
   }
 }

@@ -1,6 +1,6 @@
 import produce from 'immer';
 
-import { generateUUID } from '../../utils/generate-uuid';
+import { generateId } from '../../utils/generate-id';
 import { focusEl } from '../../utils/focus-element';
 import { Action } from '../../interfaces/action';
 import { State, Payload } from './interfaces';
@@ -119,7 +119,6 @@ export const reducer = produce((draft: State, action: Action<Payload>) => {
       break;
 
     case INDENT_BIT:
-      console.log(bitIdx);
       // We don't want to indent it if it's the first child as it doesn't make sense
       if (bitIdx === 0) {
         break;
@@ -162,7 +161,7 @@ export const reducer = produce((draft: State, action: Action<Payload>) => {
       break;
 
     case ADD_NEW_BIT_BELOW:
-      const newId = generateUUID();
+      const newId = generateId();
 
       // Add a new empty bit to the normalized bits object
       draft.bits[newId] = {

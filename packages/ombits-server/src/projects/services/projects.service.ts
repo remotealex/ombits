@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { Project } from '../interfaces/project.interface';
 import { CreateProjectDTO } from '../dto/create-project.dto';
+import { Bit } from '../interfaces/bit.interface';
 
 @Injectable()
 export class ProjectsService {
@@ -33,6 +34,16 @@ export class ProjectsService {
       { $set: { title } },
       { new: true }, // Return updated
     );
+    return updatedProject;
+  }
+
+  async updateBits(_id: Schema.Types.ObjectId, bits: Bit[]): Promise<Project> {
+    const updatedProject = await this.projectModel.findOneAndUpdate(
+      { _id },
+      { $set: { bits } },
+      { new: true }, // Return updated
+    );
+    console.log(updatedProject);
     return updatedProject;
   }
 }
