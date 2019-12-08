@@ -5,10 +5,10 @@ import { MarginStyleKeys } from 'interfaces/MarginStyleKeys';
 import { getMarginProps } from 'utils/helpers';
 import styles from './Title.module.scss';
 
-type TitleTypes = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+export type TitleType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
 interface TitleProps {
-  as: TitleTypes;
+  as: TitleType;
   inlineBlock?: boolean;
   text: string;
 }
