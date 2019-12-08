@@ -1,23 +1,21 @@
+scalar Date
+
 type User {
+  # Object properties
   _id: ID!
   firstName: String
   lastName: String
-  # projects: [Project]
+  createdAt: Date!
+  updatedAt: Date!
+
+  # External properties
+  projects: [Project]
 }
 
-# type Project {
-#   id: Int!
-#   name: String
-# }
-
 type Query {
-  user(_id: ID!): User
+  getUser(_id: ID!): User
 }
 
 type Mutation {
   createUser(firstName: String!, lastName: String!): User
 }
-
-# type Mutation {
-#   updateFirstName(id: Int!, firstName: String!): User
-# }

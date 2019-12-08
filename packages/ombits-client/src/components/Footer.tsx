@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useInterval } from 'react-use';
 import { DateTime } from 'luxon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-export const Footer = () => {
+interface Props {
+  onLogout: () => void;
+}
+
+export const Footer: React.FC<Props> = ({ onLogout }) => {
   const dt = DateTime.local();
   const [{ date, time }, setDatetime] = useState({
     date: dt.toLocaleString(DateTime.DATE_HUGE),
@@ -17,11 +23,24 @@ export const Footer = () => {
   }, 1000);
 
   return (
-    <div>
-      <time className="date" dateTime="">
-        {date}
-      </time>
-      <time className="time">{time}</time>
+    <Fragment>
+      <div>
+        <time className="date" dateTime="">
+          {date}
+        </time>
+        <time className="time">{time}</time>
+      </div>
+      <a
+        href="#logout"
+        title="Log out"
+        onClick={e => {
+          e.preventDefault();
+          e.currentTarget.blur();
+          onLogout();
+        }}
+      >
+        <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+      </a>
 
       <style jsx>{`
         div {
@@ -46,7 +65,18 @@ export const Footer = () => {
           color: rgba(255, 255, 255, 0.2);
           margin-bottom: 8px;
         }
+
+        a {
+          position: fixed;
+          bottom: 16px;
+          right: 16px;
+          opacity: 0.2;
+        }
+
+        a:hover {
+          opacity: 1;
+        }
       `}</style>
-    </div>
+    </Fragment>
   );
 };
