@@ -5,6 +5,7 @@ export const allBits = gql`
     _id
     title
     level
+    isComplete
   }
 
   fragment AllBits on Project {

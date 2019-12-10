@@ -29,7 +29,11 @@ export const routes = compose(
     '/planning/:_id': withAuth(
       route(req => {
         return {
-          state: { isPlanningMode: true, navTabText: 'Planning mode' },
+          state: {
+            isPlanningMode: true,
+            navTabText: 'Planning mode',
+            projectId: req.params._id,
+          },
           view: <Planning projectId={req.params._id} />,
         };
       }),
@@ -37,7 +41,11 @@ export const routes = compose(
     '/focus/:_id': withAuth(
       route(req => {
         return {
-          state: { isFocusMode: true, navTabText: 'Focus mode' },
+          state: {
+            isFocusMode: true,
+            navTabText: 'Focus mode',
+            projectId: req.params._id,
+          },
           view: <Focus projectId={req.params._id} />,
         };
       }),

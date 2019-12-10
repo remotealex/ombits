@@ -38,6 +38,7 @@ input BitInput {
   _id: ID!
   title: String!
   level: Int!
+  isComplete: Boolean
   bits: [BitInput]!
 }
 

@@ -9,14 +9,14 @@ import {
   UNINDENT_BIT,
   UPDATE_BIT_TITLE,
 } from './action-types';
-import { State } from './interfaces';
+import { NormalizedBitsState } from '../../interfaces/bits';
 
 interface Props {
   bitIds: string[];
   dispatch: any;
   isShiftPressed: boolean;
   parentBitId?: string;
-  state: State;
+  state: NormalizedBitsState;
 }
 
 export const BitInputs: React.FC<Props> = props => {

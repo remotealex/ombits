@@ -6,9 +6,9 @@ import { useKey, useDebounce } from 'react-use';
 import { normalizeBits, denormalizeBits } from '../../utils/normalize-bits';
 import { reducer } from './reducer';
 import { BitInputs } from './BitInputs';
-import { State, Payload } from './interfaces';
+import { Payload } from './interfaces';
 import { Action } from '../../interfaces/action';
-import { Bit } from '../../interfaces/bits';
+import { Bit, NormalizedBitsState } from '../../interfaces/bits';
 import { UPDATE_PROJECT_BITS } from '../../mutations/projects';
 import { compareObjects } from '../../utils/compare-objects';
 import { omitDeep } from '../../utils/omit-deep';
@@ -21,17 +21,16 @@ interface Props {
 export const BitsSection: React.FC<Props> = ({ bits, projectId }) => {
   const [updateProjectBits] = useMutation(UPDATE_PROJECT_BITS);
 
-  // // Bits can be deeply nested so we normalize them first
+  // Bits can be deeply nested so we normalize them first
   const { entities, result } = normalizeBits(bits);
 
   // Then we setup the reducer
-  const [state, dispatch] = useReducer<Reducer<State, Action<Payload>>>(
-    reducer,
-    {
-      bits: entities.bits,
-      result,
-    },
-  );
+  const [state, dispatch] = useReducer<
+    Reducer<NormalizedBitsState, Action<Payload>>
+  >(reducer, {
+    bits: entities.bits,
+    result,
+  });
 
   // Debounce the saving of bit changes until there has been a
   // 1 second interval

@@ -8,14 +8,15 @@ import { getMarginProps } from 'utils/helpers';
 import styles from './Card.module.scss';
 
 interface CardProps {
-  title?: string;
   onClick?: (e?: React.MouseEvent<HTMLElement>) => void;
-  textAlign?: TextAlignOption;
+  onMouseOver?: () => void;
   style?: React.CSSProperties;
+  textAlign?: TextAlignOption;
+  title?: string;
 }
 
 export const Card: React.FC<CardProps & MarginStyleKeys> = props => {
-  const { children, onClick, title, textAlign, style } = props;
+  const { children, onClick, title, textAlign, style, onMouseOver } = props;
   const marginProps = getMarginProps(props);
 
   // Build the class names
@@ -28,6 +29,7 @@ export const Card: React.FC<CardProps & MarginStyleKeys> = props => {
       className={cls}
       style={{ ...marginProps, textAlign, ...style }}
       onClick={onClick}
+      onMouseOver={onMouseOver}
     >
       {title && (
         <Title as="h4" text={title} marginBottom={!!children ? 2 : 0} />

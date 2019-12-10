@@ -11,7 +11,7 @@ interface Props {
 export const Nav: React.FC<Props> = ({ onCloseNav }) => {
   const navigation = useNavigation();
   const route = useCurrentRoute();
-  const { isFocusMode, isPlanningMode } = route.state;
+  const { isFocusMode, isPlanningMode, projectId } = route.state;
 
   return (
     <>
@@ -33,7 +33,7 @@ export const Nav: React.FC<Props> = ({ onCloseNav }) => {
             <Card
               textAlign="center"
               onClick={() => {
-                navigation.navigate('/');
+                navigation.navigate(`/planning/${projectId}`);
                 onCloseNav();
               }}
             >
@@ -44,7 +44,7 @@ export const Nav: React.FC<Props> = ({ onCloseNav }) => {
             <Card
               textAlign="center"
               onClick={() => {
-                navigation.navigate('/focus');
+                navigation.navigate(`/focus/${projectId}`);
                 onCloseNav();
               }}
             >

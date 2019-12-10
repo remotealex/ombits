@@ -1,8 +1,9 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
 
-import { Button, Text, Title } from 'om-ui';
-import { GET_PROJECT } from '../queries/projects';
+import { GET_PROJECT } from '../../queries/projects';
+// import { flattenBits } from '../../utils/flatten-bits';
+import { FocusSection } from './FocusSection';
 
 interface Props {
   projectId: string;
@@ -13,19 +14,12 @@ export const Focus: React.FC<Props> = ({ projectId }) => {
     variables: { _id: projectId },
   });
 
-  if (loading) return <div>Loading...</div>;
+  if (loading || !data || !data.project) return <div>Loading...</div>;
   if (error) return <div>Error :(</div>;
 
   return (
     <section>
-      <div>
-        <Text as="p" text={data.project.title} marginBottom={1} />
-        <Title as="h1" text="Open design" marginBottom={4} />
-        <div className="done">
-          <Button intent="primary" text="Done" marginBottom={1} size="large" />
-        </div>
-        <Button text="Skip" />
-      </div>
+      <FocusSection project={data.project} bits={data.project.bits} />
 
       <style jsx>{`
         section {
