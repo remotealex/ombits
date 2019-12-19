@@ -103,8 +103,8 @@ export const reducer = produce(
           numBits > 0
             ? draft.bits[_id].bits[0]
             : siblingBits.length - bitIdx > 1
-            ? siblingBits[bitIdx + 1]
-            : getNextBitId(parentBitId);
+              ? siblingBits[bitIdx + 1]
+              : getNextBitId(parentBitId);
 
         focusEl(nextBitId);
         break;

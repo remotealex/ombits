@@ -38,7 +38,10 @@ export const BitInputs: React.FC<Props> = props => {
 
         return (
           <Fragment key={bit._id}>
-            <div style={{ marginLeft: `${bit.level * 16 * 2}px` }}>
+            <div
+              style={{ marginLeft: `${bit.level * 16 * 2}px`, display: 'flex' }}
+            >
+              <span>{bit.isComplete ? '✅' : ''}</span>
               <input
                 id={bit._id}
                 value={bit.title}

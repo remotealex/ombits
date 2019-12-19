@@ -1,7 +1,5 @@
 export interface Payload {
-  currentBitId?: string;
+  bitId: string;
 }
 
-export interface State {
-  currentBitId: string;
-}
+export interface State {}

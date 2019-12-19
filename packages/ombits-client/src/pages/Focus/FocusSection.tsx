@@ -1,17 +1,15 @@
-import React, { useReducer, Reducer, useEffect } from 'react';
+import React, { useReducer, Reducer, useEffect, useState } from 'react';
 import { Button, Text, Title } from 'om-ui';
 
-import {
-  normalizeBits,
-  // denormalizeBits
-} from '../../utils/normalize-bits';
-// import { flattenBits } from '../../utils/flatten-bits';
+import { normalizeBits } from '../../utils/normalize-bits';
+import { findNextBit } from '../../utils/find-next-bit';
 import { reducer } from './reducer';
 import { NormalizedBitsState } from '../../interfaces/bits';
 import { State, Payload } from './interfaces';
+import { MARK_BIT_AS_COMPLETE } from './action-types';
 import { Action } from '../../interfaces/action';
 import { Bit } from '../../interfaces/bits';
-import { SET_CURRENT_BIT_ID } from './action-types';
+import { updateProject } from '../../utils/update-project';
 
 interface Props {
   bits: Bit[];
@@ -25,45 +23,60 @@ export const FocusSection: React.FC<Props> = ({
   // Bits can be deeply nested so we normalize them first
   const { entities, result } = normalizeBits(originalBits);
 
-  // Get the initial
-  const bitArr = Object.values(entities.bits);
-  const incompleteBits = bitArr.filter((b: Bit) => !b.isComplete);
-  const initialBitId = incompleteBits.shift()._id || bitArr[0]._id;
-
   // Then we setup the reducer
   const [state, dispatch] = useReducer<
     Reducer<NormalizedBitsState & State, Action<Payload>>
   >(reducer, {
-    currentBitId: '',
     bits: entities.bits,
     result,
   });
 
-  useEffect(() => {
-    // TODO: we need to set the correct child;
-    dispatch({
-      type: SET_CURRENT_BIT_ID,
-      payload: { currentBitId: initialBitId },
-    });
-  }, [initialBitId]);
+  const [isSavePending, setSavePending] = useState(false);
 
-  const { currentBitId, bits } = state;
-  const currentBit = bits[currentBitId];
+  useEffect(
+    () => {
+      if (isSavePending) {
+        updateProject(project._id, state.bits, state.result);
+        setSavePending(false);
+      }
+    },
+    [isSavePending, setSavePending, state, project._id],
+  );
+
+  const bitArr = Object.values(state.bits);
+  const currentBitId = findNextBit(bitArr);
+  const currentBit = state.bits[currentBitId];
 
   if (!currentBit) {
     return <div>Loading...</div>;
   }
 
   const isTopLevel = result.includes(currentBitId);
-
-  console.log(state, dispatch);
+  const bitParent = bitArr.find(b => b.bits.includes(currentBitId));
+  const bitTitle = isTopLevel
+    ? project.title
+    : bitParent
+      ? bitParent.title
+      : null;
 
   return (
     <div>
-      <Text as="p" text={isTopLevel ? project.title : ''} marginBottom={1} />
+      <Text as="p" text={bitTitle} marginBottom={1} />
       <Title as="h1" text={currentBit.title} marginBottom={4} />
       <div className="done">
-        <Button intent="primary" text="Done" marginBottom={1} size="large" />
+        <Button
+          intent="primary"
+          text="Done"
+          marginBottom={1}
+          size="large"
+          onClick={() => {
+            dispatch({
+              type: MARK_BIT_AS_COMPLETE,
+              payload: { bitId: currentBitId },
+            });
+            setSavePending(true);
+          }}
+        />
       </div>
       <Button text="Skip" />
     </div>

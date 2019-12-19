@@ -6,7 +6,7 @@ export interface Bit {
   isComplete?: boolean;
 }
 
-interface NormalizedBit extends Omit<Bit, 'bits'> {
+export interface NormalizedBit extends Omit<Bit, 'bits'> {
   bits: string[];
 }
 

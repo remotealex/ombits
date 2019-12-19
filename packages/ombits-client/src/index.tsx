@@ -10,7 +10,7 @@ import { AuthService } from './utils/auth-service';
 // import * as serviceWorker from './serviceWorker';
 
 // Pass our GraphQL endpoint to uri
-const client = new ApolloClient({
+export const graphqlClient = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
 });
 
@@ -24,7 +24,7 @@ const Root = () => {
   useEffect(() => authService.subscribe(setCurrentUser), []);
 
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={graphqlClient}>
       <Router routes={routes} context={{ currentUser, authService }}>
         <NotFoundBoundary render={() => <h1>404 - Not Found</h1>}>
           <Suspense fallback={null}>
