@@ -1,5 +1,5 @@
-import React, { useReducer, useState, Reducer } from 'react';
-import { useKey, useDebounce } from 'react-use';
+import React, { useReducer, Reducer } from 'react';
+import { useDebounce } from 'react-use';
 
 import { normalizeBits } from '../../utils/normalize-bits';
 import { reducer } from './reducer';
@@ -42,17 +42,11 @@ export const BitsSection: React.FC<Props> = ({ bits, projectId }) => {
     [state],
   );
 
-  // Track if the Shift key is being held
-  const [isShiftPressed, setShiftPressedState] = useState(false);
-  useKey('Shift', () => setShiftPressedState(true), { event: 'keydown' });
-  useKey('Shift', () => setShiftPressedState(false), { event: 'keyup' });
-
   return (
     <>
       <BitInputs
         bitIds={state.result}
         dispatch={dispatch}
-        isShiftPressed={isShiftPressed}
         parentBitId={''}
         state={state}
       />

@@ -1,4 +1,5 @@
 export const ADD_NEW_BIT_BELOW = 'PLANNING_ADD_NEW_BIT_BELOW';
+export const ADD_NEW_CHILD_BIT = 'ADD_NEW_CHILD_BIT';
 export const DELETE_BIT = 'DELETE_BIT';
 export const FOCUS_NEXT = 'FOCUS_NEXT';
 export const FOCUS_PREVIOUS = 'FOCUS_PREVIOUS';

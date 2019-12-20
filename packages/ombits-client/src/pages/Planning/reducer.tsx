@@ -14,6 +14,7 @@ import {
   UNINDENT_BIT,
   UPDATE_BIT_TITLE,
   SET_BIT_COMPLETE_STATE,
+  ADD_NEW_CHILD_BIT,
 } from './action-types';
 
 // Immer reducer
@@ -189,6 +190,23 @@ export const reducer = produce(
         siblingBits.splice(bitIdx + 1, 0, newId);
 
         focusEl(newId);
+        break;
+
+      case ADD_NEW_CHILD_BIT:
+        const newId2 = generateId();
+
+        // Add a new empty bit to the normalized bits object
+        draft.bits[newId2] = {
+          _id: newId2,
+          title: '',
+          level: level + 1,
+          bits: [],
+        };
+
+        // Add the new element as a child of this one
+        draft.bits[_id].bits.push(newId2);
+
+        focusEl(newId2);
         break;
 
       case SET_BIT_COMPLETE_STATE:

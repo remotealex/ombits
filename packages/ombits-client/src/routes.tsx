@@ -15,20 +15,23 @@ export const routes = compose(
     />
   )),
   mount({
-    '/login': map(async (_, context: Context) =>
-      context.currentUser
-        ? redirect('/')
-        : route({
-            getView: async () => {
-              const { Login } = await import('./pages/Login');
-              return <Login authService={context.authService} />;
-            },
-          }),
+    '/login': map(
+      async (_, context: Context) =>
+        context.currentUser
+          ? redirect('/')
+          : route({
+              title: 'Login | Ombits',
+              getView: async () => {
+                const { Login } = await import('./pages/Login');
+                return <Login authService={context.authService} />;
+              },
+            }),
     ),
     '/': withAuth(route({ view: <Home /> })),
     '/planning/:_id': withAuth(
       route(req => {
         return {
+          title: 'Planning | Ombits',
           state: {
             isPlanningMode: true,
             navTabText: 'Planning mode',
@@ -41,6 +44,7 @@ export const routes = compose(
     '/focus/:_id': withAuth(
       route(req => {
         return {
+          title: 'Focus | Ombits',
           state: {
             isFocusMode: true,
             navTabText: 'Focus mode',

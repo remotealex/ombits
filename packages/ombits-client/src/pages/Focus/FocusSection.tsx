@@ -1,5 +1,5 @@
 import React, { useReducer, Reducer, useEffect, useState } from 'react';
-import { Button, Text, Title } from 'om-ui';
+import { Button, Text, Title, Wrapper } from 'om-ui';
 
 import { normalizeBits } from '../../utils/normalize-bits';
 import { findNextBit } from '../../utils/find-next-bit';
@@ -61,10 +61,10 @@ export const FocusSection: React.FC<Props> = ({
       : null;
 
   return (
-    <div>
+    <Wrapper>
       <Text as="p" text={bitTitle} marginBottom={1} />
       <Title as="h1" text={currentBit.title} marginBottom={4} />
-      <div className="done">
+      <div>
         <Button
           intent="primary"
           text="Done"
@@ -80,8 +80,6 @@ export const FocusSection: React.FC<Props> = ({
         />
       </div>
       <Button text="Skip" />
-    </div>
-    // <style jsx>{`
-    // `}</style>
+    </Wrapper>
   );
 };
