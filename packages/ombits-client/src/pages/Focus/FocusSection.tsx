@@ -47,6 +47,7 @@ export const FocusSection: React.FC<Props> = ({
   const currentBitId = findNextBit(bitArr);
   const currentBit = state.bits[currentBitId];
 
+  // TEMP: I don't think we need this but keeping it for now
   if (!currentBit) {
     return <div>Loading...</div>;
   }

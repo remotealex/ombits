@@ -9,6 +9,7 @@ import { Action } from '../../interfaces/action';
 import { Bit, NormalizedBitsState } from '../../interfaces/bits';
 import { compareObjects } from '../../utils/compare-objects';
 import { updateProject } from '../../utils/update-project';
+import { ReactHint } from '../..';
 
 interface Props {
   bits: Bit[];
@@ -47,11 +48,25 @@ export const BitsSection: React.FC<Props> = ({ bits, projectId }) => {
   useKey('Shift', () => setShiftPressedState(false), { event: 'keyup' });
 
   return (
-    <BitInputs
-      bitIds={state.result}
-      dispatch={dispatch}
-      isShiftPressed={isShiftPressed}
-      state={state}
-    />
+    <>
+      <BitInputs
+        bitIds={state.result}
+        dispatch={dispatch}
+        isShiftPressed={isShiftPressed}
+        parentBitId={''}
+        state={state}
+      />
+      <ReactHint events={{ hover: true }} delay={{ show: 500 }} />
+
+      <style jsx global>{`
+        .react-hint__content {
+          background: transparent;
+          color: white;
+          font-size: 12px;
+          font-weight: bold;
+          padding: 0;
+        }
+      `}</style>
+    </>
   );
 };

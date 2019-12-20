@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import AutosizeInput from 'react-input-autosize';
 
 import {
   ADD_NEW_BIT_BELOW,
@@ -9,13 +10,15 @@ import {
   UNINDENT_BIT,
   UPDATE_BIT_TITLE,
 } from './action-types';
-import { NormalizedBitsState } from '../../interfaces/bits';
+import { NormalizedBitsState, NormalizedBit } from '../../interfaces/bits';
+import { BitInputButtons } from './BitInputButtons';
+import { Payload } from './interfaces';
 
 interface Props {
   bitIds: string[];
   dispatch: any;
   isShiftPressed: boolean;
-  parentBitId?: string;
+  parentBitId: string;
   state: NormalizedBitsState;
 }
 
@@ -39,59 +42,18 @@ export const BitInputs: React.FC<Props> = props => {
         return (
           <Fragment key={bit._id}>
             <div
+              className="PlanningModeInputWrapper"
               style={{ marginLeft: `${bit.level * 16 * 2}px`, display: 'flex' }}
             >
-              <span>{bit.isComplete ? '✅' : ''}</span>
-              <input
+              <AutosizeInput
                 id={bit._id}
+                inputClassName={
+                  bit.isComplete
+                    ? 'PlanningModeInput PlanningModeInput__complete'
+                    : 'PlanningModeInput'
+                }
                 value={bit.title}
-                onKeyDown={e => {
-                  if (e.key === 'Tab') {
-                    e.preventDefault();
-                    if (isShiftPressed) {
-                      dispatch({ type: UNINDENT_BIT, payload });
-                    } else {
-                      dispatch({ type: INDENT_BIT, payload });
-                    }
-                    return;
-                  }
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    dispatch({ type: ADD_NEW_BIT_BELOW, payload });
-                    return;
-                  }
-                  if (e.key === 'Backspace') {
-                    if (bit.title.length === 0) {
-                      e.preventDefault();
-                      dispatch({ type: DELETE_BIT, payload });
-                      return;
-                    }
-                  }
-                  if (e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    dispatch({ type: FOCUS_PREVIOUS, payload });
-                    // Delete the bit if it's empty
-                    if (bit.title === '') {
-                      dispatch({
-                        type: DELETE_BIT,
-                        payload: { ...payload, noFocus: true },
-                      });
-                    }
-                    return;
-                  }
-                  if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    dispatch({ type: FOCUS_NEXT, payload });
-                    // Delete the bit if it's empty
-                    if (bit.title === '') {
-                      dispatch({
-                        type: DELETE_BIT,
-                        payload: { ...payload, noFocus: true },
-                      });
-                    }
-                    return;
-                  }
-                }}
+                onKeyDown={onKeyDown(payload, bit, dispatch, isShiftPressed)}
                 onChange={e => {
                   const title = e.currentTarget.value;
                   dispatch({
@@ -99,6 +61,11 @@ export const BitInputs: React.FC<Props> = props => {
                     payload: { _id: bit._id, title },
                   });
                 }}
+              />
+              <BitInputButtons
+                dispatch={dispatch}
+                bit={bit}
+                payload={payload}
               />
             </div>
             {bit.bits && (
@@ -114,22 +81,83 @@ export const BitInputs: React.FC<Props> = props => {
         );
       })}
 
-      <style jsx>{`
-        input {
+      <style jsx global>{`
+        .PlanningModeInput {
           background: none;
           border: none;
           font-size: 30px;
           margin-bottom: 10px;
+          min-width: 50px;
           opacity: 0.4;
           outline: none;
           transition: opacity 0.2s ease;
-          width: 100%;
         }
 
-        input:focus {
+        .PlanningModeInput:focus {
           opacity: 1;
+        }
+
+        .PlanningModeInput__complete {
+          text-decoration: line-through;
+        }
+
+        .PlanningModeInputWrapper:hover .BitInputButtons {
+          display: flex;
         }
       `}</style>
     </div>
   );
+};
+
+const onKeyDown = (
+  payload: Payload,
+  bit: NormalizedBit,
+  dispatch: any,
+  isShiftPressed: boolean,
+) => (e: React.KeyboardEvent<HTMLDivElement>) => {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    if (isShiftPressed) {
+      dispatch({ type: UNINDENT_BIT, payload });
+    } else {
+      dispatch({ type: INDENT_BIT, payload });
+    }
+    return;
+  }
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    dispatch({ type: ADD_NEW_BIT_BELOW, payload });
+    return;
+  }
+  if (e.key === 'Backspace') {
+    if (bit.title.length === 0) {
+      e.preventDefault();
+      dispatch({ type: DELETE_BIT, payload });
+      return;
+    }
+  }
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    dispatch({ type: FOCUS_PREVIOUS, payload });
+    // Delete the bit if it's empty
+    if (bit.title === '') {
+      dispatch({
+        type: DELETE_BIT,
+        payload: { ...payload, noFocus: true },
+      });
+    }
+    return;
+  }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    dispatch({ type: FOCUS_NEXT, payload });
+    // Delete the bit if it's empty
+    if (bit.title === '') {
+      dispatch({
+        type: DELETE_BIT,
+        payload: { ...payload, noFocus: true },
+      });
+    }
+    return;
+  }
 };

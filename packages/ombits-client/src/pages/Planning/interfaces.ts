@@ -1,7 +1,7 @@
 export interface Payload {
   _id: string;
-  bitAboveId: string;
   level: number;
+  newCompleteState?: boolean;
   noFocus?: boolean;
   numBits: number;
   parentBitId: string;

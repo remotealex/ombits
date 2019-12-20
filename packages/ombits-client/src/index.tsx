@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { Router, View, NotFoundBoundary } from 'react-navi';
+import ReactHintFactory from 'react-hint';
+import 'react-hint/css/index.css';
 
 import { routes } from './routes';
 import { AuthService } from './utils/auth-service';
 
 // import * as serviceWorker from './serviceWorker';
+
+// Simple tooltip package
+export const ReactHint = ReactHintFactory(React);
 
 // Pass our GraphQL endpoint to uri
 export const graphqlClient = new ApolloClient({

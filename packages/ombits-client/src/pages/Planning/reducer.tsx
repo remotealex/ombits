@@ -13,12 +13,20 @@ import {
   INDENT_BIT,
   UNINDENT_BIT,
   UPDATE_BIT_TITLE,
+  SET_BIT_COMPLETE_STATE,
 } from './action-types';
 
 // Immer reducer
 export const reducer = produce(
   (draft: NormalizedBitsState, action: Action<Payload>) => {
-    const { _id, level, numBits, parentBitId, noFocus } = action.payload;
+    const {
+      _id,
+      level,
+      newCompleteState,
+      noFocus,
+      numBits,
+      parentBitId,
+    } = action.payload;
 
     const bitIdx = parentBitId
       ? draft.bits[parentBitId].bits.findIndex(id => id === _id)
@@ -181,6 +189,10 @@ export const reducer = produce(
         siblingBits.splice(bitIdx + 1, 0, newId);
 
         focusEl(newId);
+        break;
+
+      case SET_BIT_COMPLETE_STATE:
+        draft.bits[_id].isComplete = newCompleteState;
         break;
     }
   },
