@@ -5,6 +5,10 @@ import { focusEl } from '../../utils/focus-element';
 import { Action } from '../../interfaces/action';
 import { NormalizedBitsState } from '../../interfaces/bits';
 import { Payload } from './interfaces';
+import { completeParents } from '../../utils/complete-parents';
+import { resetParents } from '../../utils/reset-parents';
+import { deleteChildren } from '../../utils/delete-children';
+import { setCompletionStateForChildren } from '../../utils/complete-children';
 import {
   ADD_NEW_BIT_BELOW,
   DELETE_BIT,
@@ -13,7 +17,7 @@ import {
   INDENT_BIT,
   UNINDENT_BIT,
   UPDATE_BIT_TITLE,
-  SET_BIT_COMPLETE_STATE,
+  SET_BIT_COMPLETION_STATE,
   ADD_NEW_CHILD_BIT,
 } from './action-types';
 
@@ -112,22 +116,22 @@ export const reducer = produce(
           numBits > 0
             ? draft.bits[_id].bits[0]
             : siblingBits.length - bitIdx > 1
-              ? siblingBits[bitIdx + 1]
-              : getNextBitId(parentBitId);
+            ? siblingBits[bitIdx + 1]
+            : getNextBitId(parentBitId);
 
         focusEl(nextBitId);
         break;
 
       case DELETE_BIT:
-        // TODO: Delete item with children (pop-confirm)
-        if (numBits === 0) {
-          // Remove the bit from the parent
-          siblingBits.splice(bitIdx, 1);
+        // Delete any children
+        deleteChildren(draft, _id);
 
-          // Focus the previous element when required
-          if (!noFocus) {
-            focusEl(getPreviousBitId(bitAboveId, bitIdx));
-          }
+        // Then remove the bit from it's parent array
+        siblingBits.splice(bitIdx, 1);
+
+        // Focus the previous element when required
+        if (!noFocus) {
+          focusEl(getPreviousBitId(bitAboveId, bitIdx));
         }
         break;
 
@@ -149,6 +153,10 @@ export const reducer = produce(
 
         // And then remove the it from the old one
         siblingBits.splice(bitIdx, 1);
+
+        // Make sure the parents are synced
+        completeParents(draft, _id);
+        resetParents(draft, _id);
 
         focusEl(_id);
         break;
@@ -189,6 +197,9 @@ export const reducer = produce(
         // Add the new element below this one
         siblingBits.splice(bitIdx + 1, 0, newId);
 
+        // Make sure the parent as marked as incomplete
+        resetParents(draft, newId);
+
         focusEl(newId);
         break;
 
@@ -206,11 +217,20 @@ export const reducer = produce(
         // Add the new element as a child of this one
         draft.bits[_id].bits.push(newId2);
 
+        // Make sure the parent as marked as incomplete
+        resetParents(draft, newId2);
+
         focusEl(newId2);
         break;
 
-      case SET_BIT_COMPLETE_STATE:
+      case SET_BIT_COMPLETION_STATE:
         draft.bits[_id].isComplete = newCompleteState;
+        setCompletionStateForChildren(draft, _id, newCompleteState);
+        if (newCompleteState) {
+          completeParents(draft, _id);
+        } else {
+          resetParents(draft, _id);
+        }
         break;
     }
   },

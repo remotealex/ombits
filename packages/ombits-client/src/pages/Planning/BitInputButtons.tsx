@@ -8,7 +8,7 @@ import {
 
 import { NormalizedBit } from '../../interfaces/bits';
 import { Payload } from './interfaces';
-import { SET_BIT_COMPLETE_STATE, DELETE_BIT } from './action-types';
+import { SET_BIT_COMPLETION_STATE, DELETE_BIT } from './action-types';
 
 interface Props {
   bit: NormalizedBit;
@@ -30,7 +30,7 @@ export const BitInputButtons: React.FC<Props> = props => {
         }
         onClick={() => {
           dispatch({
-            type: SET_BIT_COMPLETE_STATE,
+            type: SET_BIT_COMPLETION_STATE,
             payload: { ...payload, newCompleteState: !bit.isComplete },
           });
         }}
